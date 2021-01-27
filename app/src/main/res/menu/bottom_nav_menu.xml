@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/nav_date"
+        android:icon="@drawable/icon_date"
+        android:iconTint="@color/teal_700"
+        android:title="@string/date" />
+
+    <item
+        android:id="@+id/nav_bill"
+        android:icon="@drawable/icon_bill"
+        android:iconTint="@color/teal_700"
+        android:title="@string/bill"/>
+
+    <item
+        android:id="@+id/nav_mood"
+        android:icon="@drawable/icon_mood"
+        android:iconTint="@color/teal_700"
+        android:title="@string/mood"/>
+</menu>

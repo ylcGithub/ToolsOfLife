@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ToolsOfLife</string>
+    <string name="mood">心情</string>
+    <string name="date">日期</string>
+    <string name="bill">账单</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="create_bill">创建账单</string>
+    <string name="create_date">创建日期</string>
+    <string name="create_mood">创建心情</string>
+    <string name="date_title">日期标题</string>
+    <string name="select_date">选择日期</string>
+    <string name="description">描述</string>
+    <string name="input_des">输入描述</string>
+    <string name="save">保存</string>
+</resources>
