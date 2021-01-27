@@ -13,4 +13,5 @@
     <color name="transparent">#00000000</color>
     <!--AppImageView 里 图片点击的 默认滤镜-->
     <color name="image_press_color">#AA000000</color>
+    <color name="color_red">#FF0000</color>
 </resources>

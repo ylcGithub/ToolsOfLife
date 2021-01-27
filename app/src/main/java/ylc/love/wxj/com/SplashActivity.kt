@@ -1,6 +1,9 @@
 package ylc.love.wxj.com
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.util.Log
+import kotlinx.android.synthetic.main.activity_splash.*
 import ylc.love.wxj.com.base.BaseActivity
 
 /**
@@ -13,7 +16,17 @@ class SplashActivity : BaseActivity(){
     override fun getLayoutId(): Int = R.layout.activity_splash
 
     override fun initData() {
-        toNextActivity(MainActivity::class.java)
-        Log.e("ylc","error")
+        anim_logo.addOffsetAnimListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                Log.d("AnimLogoView", "Offset anim end")
+            }
+        })
+        anim_logo.addGradientAnimListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                Log.d("AnimLogoView", "Gradient anim end")
+                toNextActivity(MainActivity::class.java)
+            }
+        })
+        anim_logo.startAnimation()
     }
 }
