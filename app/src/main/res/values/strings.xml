@@ -1,15 +1,20 @@
 <resources>
     <string name="app_name">ToolsOfLife</string>
+    <string name="aunt">姨妈</string>
+    <string name="aunt_date">姨妈日期</string>
     <string name="mood">心情</string>
     <string name="date">日期</string>
     <string name="bill">账单</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="create_bill">创建账单</string>
-    <string name="create_date">创建日期</string>
-    <string name="create_mood">创建心情</string>
+    <string name="create_event">创建事件</string>
     <string name="date_title">日期标题</string>
     <string name="select_date">选择日期</string>
-    <string name="description">描述</string>
     <string name="input_des">输入描述</string>
     <string name="save">保存</string>
+    <string name="create">新建</string>
+
+    <string name="title_colon">标题:</string>
+    <string name="des_colon">描述:</string>
+    <string name="has_gone_colon">已过:</string>
+    <string name="need_time_colon">还差:</string>
 </resources>

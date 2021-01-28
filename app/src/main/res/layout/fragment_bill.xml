@@ -17,21 +17,5 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/create_bill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="60dp"
-            android:backgroundTint="@color/white"
-            android:foregroundGravity="center"
-            app:borderWidth="0dp"
-            app:fabSize="auto"
-            app:maxImageSize="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            app:rippleColor="@color/color_aaa"
-            app:srcCompat="@drawable/icon_bill"
-            tools:ignore="ContentDescription,UnusedAttribute" />
     </RelativeLayout>
 </layout>

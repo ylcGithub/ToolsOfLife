@@ -10,9 +10,6 @@
         android:name="ylc.love.wxj.com.ui.date.DateFragment"
         android:label="@string/date"
         tools:layout="@layout/fragment_date">
-        <action
-            android:id="@+id/date_to_create"
-            app:destination="@+id/nav_create_date" />
     </fragment>
 
     <fragment
@@ -20,9 +17,7 @@
         android:name="ylc.love.wxj.com.ui.bill.BillFragment"
         android:label="@string/bill"
         tools:layout="@layout/fragment_bill">
-        <action
-            android:id="@+id/bill_to_create"
-            app:destination="@+id/nav_create_bill" />
+
     </fragment>
 
     <fragment
@@ -30,23 +25,11 @@
         android:name="ylc.love.wxj.com.ui.mood.MoodFragment"
         android:label="@string/mood"
         tools:layout="@layout/fragment_mood">
-        <action
-            android:id="@+id/mood_to_create"
-            app:destination="@+id/nav_create_mood" />
+
     </fragment>
     <fragment
-        android:id="@+id/nav_create_date"
-        android:name="ylc.love.wxj.com.ui.date.CreateDateFragment"
-        android:label="@string/create_date"
-        tools:layout="@layout/fragment_create_date" />
-    <fragment
-        android:id="@+id/nav_create_bill"
-        android:name="ylc.love.wxj.com.ui.bill.CreateBillFragment"
-        android:label="@string/create_bill"
-        tools:layout="@layout/fragment_create_bill" />
-    <fragment
-        android:id="@+id/nav_create_mood"
-        android:name="ylc.love.wxj.com.ui.mood.CreateMoodFragment"
-        android:label="@string/create_mood"
-        tools:layout="@layout/fragment_create_mood" />
+        android:id="@+id/nav_aunt"
+        android:name="ylc.love.wxj.com.ui.aunt.AuntFragment"
+        android:label="@string/aunt_date"
+        tools:layout="@layout/fragment_aunt" />
 </navigation>

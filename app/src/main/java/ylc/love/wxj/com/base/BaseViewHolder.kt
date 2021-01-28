@@ -8,4 +8,4 @@ import androidx.recyclerview.widget.RecyclerView
  *@create on 2020/12/1 09
  *说明:
  */
-class BaseOneBindingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

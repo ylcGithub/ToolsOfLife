@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="click"
+            type="ylc.love.wxj.com.ui.create.CreateEventActivity.ClickProxy" />
+
+        <variable
+            name="eventBean"
+            type="ylc.love.wxj.com.model.EventBean" />
+        <variable
+            name="vm"
+            type="ylc.love.wxj.com.ui.create.CreateEventViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -44,4 +44,16 @@
         <attr name="textPadding" format="dimension" />
         <attr name="showGradient" format="boolean" />
     </declare-styleable>
+
+    <string-array name="BillTypeString">
+        <item>交通</item>
+        <item>三餐</item>
+        <item>日常</item>
+        <item>娱乐</item>
+        <item>金融</item>
+        <item>人情</item>
+        <item>医疗</item>
+        <item>零食</item>
+        <item>其他</item>
+    </string-array>
 </resources>

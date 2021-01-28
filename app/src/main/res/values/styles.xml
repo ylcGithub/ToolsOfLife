@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="date_list_item_tv_title">
+        <item name="android:textSize">@dimen/font_size_18</item>
+        <item name="android:textColor">@color/color_333</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="date_list_item_tv_des">
+        <item name="android:textSize">@dimen/font_size_18</item>
+        <item name="android:textColor">@color/color_666</item>
+        <item name="android:paddingStart">@dimen/widget_size_10</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+</resources>

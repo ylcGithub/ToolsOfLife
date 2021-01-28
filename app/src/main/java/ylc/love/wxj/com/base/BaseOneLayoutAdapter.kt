@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
  *说明: 数据源E 要实现 hashCode 和 equals 方法 以便数据的比较 （kotlin 中的data class 已经默认实现了这两个方法不用特意实现）
  */
 abstract class BaseOneLayoutAdapter<E, VB : ViewDataBinding>(@LayoutRes val layoutId: Int) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    RecyclerView.Adapter<BaseViewHolder>() {
     //数据源列表
     private val dataList: ArrayList<E> = ArrayList()
 
@@ -29,20 +29,20 @@ abstract class BaseOneLayoutAdapter<E, VB : ViewDataBinding>(@LayoutRes val layo
         calculateDiff.dispatchUpdatesTo(this)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):BaseViewHolder {
         val vb = DataBindingUtil.inflate<VB>(
             LayoutInflater.from(parent.context),
             layoutId,
             parent,
             false
         )
-        return BaseOneBindingViewHolder(vb.root)
+        return BaseViewHolder(vb.root)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val binding = DataBindingUtil.getBinding<VB>(holder.itemView)
         binding?.let {
-            this.onBindOneTypeItem(it, dataList[position], holder)
+            this.onBindItem(it, dataList[position], holder)
             it.executePendingBindings()
         }
     }
@@ -79,11 +79,11 @@ abstract class BaseOneLayoutAdapter<E, VB : ViewDataBinding>(@LayoutRes val layo
     /**
      * 数据绑定动态交给需要使用的地方去实现
      *
-     * @param binding itemLayout 的 数据绑定回调
+     * @param bind itemLayout 的 数据绑定回调
      * @param item    数据item
      * @param holder  每条数据对应的holder 主要用来后去该条数据的下标 holder.getAdapterPosition();
      */
-    protected abstract fun onBindOneTypeItem(binding: VB, item: E, holder: RecyclerView.ViewHolder)
+    protected abstract fun onBindItem(bind: VB, item: E, holder: BaseViewHolder)
 
     fun getItem(position: Int): E? {
         return if (position < 0 || position > itemCount) {

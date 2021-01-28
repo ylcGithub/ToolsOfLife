@@ -19,4 +19,9 @@
         android:icon="@drawable/icon_mood"
         android:iconTint="@color/teal_700"
         android:title="@string/mood"/>
+    <item
+        android:id="@+id/nav_aunt"
+        android:icon="@drawable/icon_create"
+        android:iconTint="@color/teal_700"
+        android:title="@string/aunt"/>
 </menu>

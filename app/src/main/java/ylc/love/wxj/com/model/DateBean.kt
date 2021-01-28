@@ -12,12 +12,14 @@ import java.util.*
  */
 @Entity
 data class DateBean(
-    @PrimaryKey
-    var id: Long,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long,
     @ColumnInfo
     var title: String,
     @ColumnInfo
-    var des: String?,
+    var des: String,
     @ColumnInfo
-    var date: Long
+    var date: Long,
+    @ColumnInfo
+    var createDate:Long
 )

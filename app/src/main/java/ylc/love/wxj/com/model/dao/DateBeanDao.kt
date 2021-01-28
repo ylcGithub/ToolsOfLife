@@ -10,11 +10,14 @@ import ylc.love.wxj.com.model.DateBean
  * 说明:
  */
 @Dao
-interface DateBeanDao:BaseDao<DateBean> {
+interface DateBeanDao : BaseDao<DateBean> {
     /**
      * 根据用户id查找用户信息
-     * @param userId 用户id
+     * @param id id
      */
     @Query("select * from DateBean where id = :id")
     fun selectById(id: Long): DateBean?
+
+    @Query("select * from DateBean")
+    fun selectAll(): List<DateBean>
 }
