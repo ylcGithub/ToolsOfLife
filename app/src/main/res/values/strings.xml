@@ -17,4 +17,5 @@
     <string name="des_colon">描述:</string>
     <string name="has_gone_colon">已过:</string>
     <string name="need_time_colon">还差:</string>
+    <string name="verify_finger_print">验证指纹</string>
 </resources>

@@ -75,4 +75,7 @@ dependencies {
     implementation "com.jaeger.statusbarutil:library:1.5.1"
     //分包
     implementation "androidx.multidex:multidex:2.0.1"
+    //popWindow
+    implementation "com.github.razerdp:BasePopup:2.2.18"
+
 }

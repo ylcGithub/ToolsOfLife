@@ -10,9 +10,12 @@
     <color name="color_aaa">#AAAAAA</color>
     <color name="color_333">#333</color>
     <color name="color_666">#666</color>
+    <color name="color_999">#999</color>
     <color name="transparent">#00000000</color>
     <!--AppImageView 里 图片点击的 默认滤镜-->
     <color name="image_press_color">#AA000000</color>
     <color name="color_red">#FF0000</color>
     <color name="activity_normal_bg_color">#F4F6FA</color>
+    <color name="pop_window_background_color">#77666666</color>
+    <color name="line_color">#AAA</color>
 </resources>
