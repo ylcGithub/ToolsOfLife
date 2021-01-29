@@ -1,10 +1,12 @@
 package ylc.love.wxj.com.ui.date
 
 import android.os.Build
+import android.text.TextUtils
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_date.*
+import ylc.love.wxj.com.BuildConfig
 import ylc.love.wxj.com.R
 import ylc.love.wxj.com.base.BaseFragment
 import ylc.love.wxj.com.base.BaseOneLayoutAdapter
@@ -15,7 +17,6 @@ import ylc.love.wxj.com.model.DateBean
 import ylc.love.wxj.com.utils.DateUtils
 import ylc.love.wxj.com.utils.ResUtil
 import ylc.love.wxj.com.widget.CustomItemDecoration
-import java.util.*
 
 class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
     override fun getLayoutId(): Int = R.layout.fragment_date
@@ -59,7 +60,13 @@ class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
                 bind.tvNeedTime.text = DateUtils.getNeed(item.date)
                 bind.tvDes.text = item.des
                 bind.tvDes.setOnClickListener {
-                    bind.tvDes.isSingleLine = !bind.tvDes.isSingleLine
+                    if (bind.tvDes.maxLines == 1) {
+                        bind.tvDes.maxLines = 10
+                        bind.tvDes.ellipsize = null
+                    } else {
+                        bind.tvDes.maxLines = 1
+                        bind.tvDes.ellipsize = TextUtils.TruncateAt.END
+                    }
                 }
             }
         }

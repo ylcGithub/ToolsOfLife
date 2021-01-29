@@ -23,52 +23,18 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:padding="@dimen/widget_size_10">
-
         <TextView
-            android:id="@+id/tv_event_title_key"
+            android:id="@+id/tv_title_key"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/event_type"
+            android:text="@string/event_title"
             android:textColor="@color/color_666"
             android:textSize="@dimen/font_size_16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ylc.love.wxj.com.widget.DrawableTextView
-            android:id="@+id/tv_event_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/color_999"
-            android:textSize="@dimen/font_size_16"
-            app:drawableHeight="@dimen/widget_size_15"
-            app:drawableRight="@drawable/icon_arrow_down"
-            app:drawableWidth="@dimen/widget_size_15"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="阿萨德离开" />
-
-        <View
-            android:id="@+id/line1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/widget_min_size_1"
-            android:layout_marginTop="@dimen/widget_size_10"
-            android:background="@color/line_color"
-            app:layout_constraintTop_toBottomOf="@+id/tv_event_title_key" />
-
-        <TextView
-            android:id="@+id/tv_title_key"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/widget_size_10"
-            android:text="@string/event_title"
-            android:textColor="@color/color_666"
-            android:textSize="@dimen/font_size_16"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/line1" />
-
         <EditText
-            android:id="@+id/et_event_title"
+            android:id="@+id/et_title"
             android:layout_width="0dp"
             android:layout_height="@dimen/widget_size_30"
             android:background="@null"
@@ -81,9 +47,44 @@
             android:textSize="@dimen/font_size_16"
             app:layout_constraintBottom_toBottomOf="@+id/tv_title_key"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_title_key"
             app:layout_constraintTop_toTopOf="@+id/tv_title_key"
             tools:ignore="Autofill,LabelFor,RtlHardcoded,RtlSymmetry" />
+
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_min_size_1"
+            android:layout_marginTop="@dimen/widget_size_10"
+            android:background="@color/line_color"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_key" />
+
+        <TextView
+            android:id="@+id/tv_event_title_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/event_type"
+            android:textColor="@color/color_666"
+            android:textSize="@dimen/font_size_16"
+            android:layout_marginTop="@dimen/widget_size_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line1" />
+
+        <ylc.love.wxj.com.widget.DrawableTextView
+            android:id="@+id/tv_event_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_999"
+            android:textSize="@dimen/font_size_16"
+            app:drawableHeight="@dimen/widget_size_15"
+            app:drawableRight="@drawable/icon_arrow_down"
+            app:drawableWidth="@dimen/widget_size_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_event_title_key"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_event_title_key"
+            android:onClick="@{()->click.clickEventType()}"
+            tools:text="阿萨德离开" />
+
 
         <View
             android:id="@+id/line2"
@@ -91,7 +92,7 @@
             android:layout_height="@dimen/widget_min_size_1"
             android:layout_marginTop="@dimen/widget_size_10"
             android:background="@color/line_color"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title_key" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_event_title_key" />
 
         <TextView
             android:id="@+id/tv_event_time_key"

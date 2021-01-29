@@ -36,7 +36,7 @@
                     android:id="@+id/tv_title_date"
                     style="@style/date_list_item_tv_des"
                     tools:ignore="RtlSymmetry"
-                    android:gravity="right"
+                    android:gravity="end"
                     tools:text="2020-08-15" />
             </LinearLayout>
 
@@ -103,7 +103,6 @@
                 <TextView
                     android:id="@+id/tv_des"
                     style="@style/date_list_item_tv_des"
-                    android:singleLine="true"
                     android:textColor="@color/teal_700"
                     tools:ignore="RtlSymmetry"
                     tools:text="现在基本上是个APP，里面都少不了CardView优美的身影，而UI基本上设计出来的都是带着各种颜色的CardView,美其名曰，搭配起来好看。好吧，咱也不敢说，咱也不敢问，搞呗" />

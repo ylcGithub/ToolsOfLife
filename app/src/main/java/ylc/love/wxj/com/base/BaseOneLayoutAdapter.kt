@@ -55,10 +55,7 @@ abstract class BaseOneLayoutAdapter<E, VB : ViewDataBinding>(@LayoutRes val layo
         override fun getNewListSize(): Int = newList.size
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-            itemIsSame(
-                oldList[oldItemPosition],
-                newList[newItemPosition]
-            )
+            itemIsSame(oldList[oldItemPosition], newList[newItemPosition])
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             val oldItem = oldList[oldItemPosition]
