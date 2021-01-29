@@ -58,7 +58,7 @@ class MainActivity : BaseActivity() {
                     id + it,
                     stringArray[it],
                     "${it}现在基本上是个APP，里面都少不了CardView优美的身影，而UI基本上设计出来的都是带着各种颜色的CardView,美其名曰，搭配起来好看。好吧，咱也不敢说，咱也不敢问，搞呗",
-                    id - id*id*id*id*id * 1000 * 60,
+                    id - ((it + 1) * 1000 * 60 * 60 * 24),
                     id
                 )
                 dataBeanDao.insert(ben)

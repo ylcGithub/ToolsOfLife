@@ -11,14 +11,10 @@ class DateViewModel : BaseViewModel() {
     private val _dataList = MutableLiveData<List<DateBean>>()
     val dateList: LiveData<List<DateBean>> = _dataList
 
-    fun initData(){
-        getAllDateBeans()
-    }
-
-    private fun getAllDateBeans() = runOnThread(work = {
+    fun getAllDateBeans() = runOnThread(work = {
         val dateBeanDao = AppDataBase.instance.dateBeanDao()
-        val selectAll = dateBeanDao.selectAll()
-        _dataList.postValue(selectAll)
+        val list = dateBeanDao.selectAll()
+        setValueOnMain(_dataList, list)
     })
 
 }

@@ -1,4 +1,5 @@
 package ylc.love.wxj.com.utils
+
 import android.annotation.SuppressLint
 
 import java.text.SimpleDateFormat
@@ -49,6 +50,7 @@ object DateUtils {
     @JvmStatic
     fun getDateStr(milSecond: Long, pattern: String): String {
         val date = Date(milSecond)
+
         @SuppressLint("SimpleDateFormat")
         val format = SimpleDateFormat(pattern, Locale.CHINESE)
         return format.format(date)
@@ -89,7 +91,7 @@ object DateUtils {
      * date yyyy-MM-dd
      */
     @JvmStatic
-    fun getDateFromYMD(date:String) : Long {
+    fun getDateFromYMD(date: String): Long {
         return getDateFromStr(date, "yyyy-MM-dd")
     }
 
@@ -105,7 +107,8 @@ object DateUtils {
         val calendar = Calendar.getInstance()
         try {
             val sdf = SimpleDateFormat("yyyy-MM")
-            calendar.time = if(month > 9) sdf.parse( "${year}-${month}")!! else sdf.parse("${year}-0${month}")!!
+            calendar.time =
+                if (month > 9) sdf.parse("${year}-${month}")!! else sdf.parse("${year}-0${month}")!!
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -129,10 +132,10 @@ object DateUtils {
     }
 
     @JvmStatic
-    fun getDateWeek(time: Long) : String {
+    fun getDateWeek(time: Long): String {
         val cd = Calendar.getInstance(Locale.CHINESE)
         cd.time = Date(time)
-        return when(cd.get(Calendar.DAY_OF_WEEK)) {
+        return when (cd.get(Calendar.DAY_OF_WEEK)) {
             Calendar.SUNDAY -> "星期日"
             Calendar.MONDAY -> "星期一"
             Calendar.TUESDAY -> "星期二"
@@ -141,6 +144,38 @@ object DateUtils {
             Calendar.FRIDAY -> "星期五"
             else -> "星期六"
         }
+    }
+
+    /**
+     * 返回 传入时间 距离当前时间已经过去多少天
+     */
+    fun getGone(oldTime: Long): String {
+        val diff = System.currentTimeMillis() - oldTime
+        val day = (diff / 24 / 60 / 60 / 1000).toInt()
+        return "${day}天"
+    }
+
+    /**
+     * 计算还差多少天才到这个时间
+     */
+    fun getNeed(oldTime: Long): String {
+        //得到一个Calendar的实例
+        val ca: Calendar = Calendar.getInstance()
+        //设置时间
+        ca.time = Date(oldTime)
+        var diffYear = 1
+        while (System.currentTimeMillis() > ca.time.time){
+            ca.add(Calendar.YEAR,diffYear)
+            diffYear++
+        }
+        val diff = ca.time.time - getCurrentMill()
+        val diffDay = (diff / (24 * 60 * 60 * 1000))
+        return "${diffDay}天"
+    }
+
+    private fun getCurrentMill():Long{
+        val dateStr = getDateStr(System.currentTimeMillis(), "yyyy-MM-dd")
+        return getDateFromStr(dateStr,"yyyy-MM-dd")
     }
 }
 

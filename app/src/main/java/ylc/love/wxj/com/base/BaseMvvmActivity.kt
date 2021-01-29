@@ -32,10 +32,6 @@ abstract class BaseMvvmActivity<VM : BaseViewModel, B : ViewDataBinding> : BaseA
         lifecycle.removeObserver(mViewModel)
     }
 
-    fun finishActivity() {
-        AppManager.finishActivity(this)
-    }
-
     override fun onResume() {
         if(isCreated){
             loadingInit()

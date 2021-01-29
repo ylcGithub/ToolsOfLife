@@ -4,19 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
-import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavOptions
-import androidx.navigation.fragment.NavHostFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import ylc.love.wxj.com.R
 import ylc.love.wxj.com.config.ParamsKey
 import ylc.love.wxj.com.utils.AppManager
 import java.lang.Exception
@@ -97,5 +92,9 @@ abstract class BaseActivity : AppCompatActivity() {
     protected open fun getViewModelProvider(activity: AppCompatActivity): ViewModelProvider {
         if (!this::mActivityProvider.isInitialized) mActivityProvider = ViewModelProvider(activity)
         return mActivityProvider
+    }
+
+    protected fun finishActivity(){
+        AppManager.finishActivity(this)
     }
 }

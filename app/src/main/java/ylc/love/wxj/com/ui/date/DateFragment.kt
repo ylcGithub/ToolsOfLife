@@ -13,6 +13,8 @@ import ylc.love.wxj.com.databinding.DateListItemBinding
 import ylc.love.wxj.com.databinding.FragmentDateBinding
 import ylc.love.wxj.com.model.DateBean
 import ylc.love.wxj.com.utils.DateUtils
+import ylc.love.wxj.com.utils.ResUtil
+import ylc.love.wxj.com.widget.CustomItemDecoration
 import java.util.*
 
 class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
@@ -24,6 +26,19 @@ class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
         rcv_date.layoutManager =
             LinearLayoutManager(context).also { it.orientation = LinearLayoutManager.VERTICAL }
         rcv_date.adapter = listAdapter
+        mViewModel.getAllDateBeans()
+        if (rcv_date.itemDecorationCount == 0) {
+            rcv_date.addItemDecoration(CustomItemDecoration(CustomItemDecoration.Type.VER).apply {
+                space = ResUtil.getDimen(mContext, R.dimen.widget_size_15).toInt()
+                mostTop = space
+                mostLeft = space
+                mostRight = space
+                mostBottom = space
+            })
+        }
+        mViewModel.dateList.observe(this, {
+            listAdapter.updateList(it, true)
+        })
     }
 
 
@@ -36,13 +51,17 @@ class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
             override fun onBindItem(
                 bind: DateListItemBinding,
                 item: DateBean,
-                holder: BaseViewHolder) {
+                holder: BaseViewHolder
+            ) {
                 bind.tvTitle.text = item.title
-                bind.tvTitleDate.text = DateUtils.getDateStr(item.date,"yyyy-MM-dd")
-                bind.tvGone.text = "33天"
-                bind.tvNeedTime.text = "66天"
+                bind.tvTitleDate.text = DateUtils.getDateStr(item.date, "yyyy-MM-dd")
+                bind.tvGone.text = DateUtils.getGone(item.date)
+                bind.tvNeedTime.text = DateUtils.getNeed(item.date)
                 bind.tvDes.text = item.des
+                bind.tvDes.setOnClickListener {
+                    bind.tvDes.isSingleLine = !bind.tvDes.isSingleLine
+                }
             }
-
         }
+
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,6 +12,7 @@
         <variable
             name="eventBean"
             type="ylc.love.wxj.com.model.EventBean" />
+
         <variable
             name="vm"
             type="ylc.love.wxj.com.ui.create.CreateEventViewModel" />
@@ -17,7 +20,147 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:padding="@dimen/widget_size_10">
 
+        <TextView
+            android:id="@+id/tv_event_title_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/event_type"
+            android:textColor="@color/color_666"
+            android:textSize="@dimen/font_size_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ylc.love.wxj.com.widget.DrawableTextView
+            android:id="@+id/tv_event_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_999"
+            android:textSize="@dimen/font_size_16"
+            app:drawableHeight="@dimen/widget_size_15"
+            app:drawableRight="@drawable/icon_arrow_down"
+            app:drawableWidth="@dimen/widget_size_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="阿萨德离开" />
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_min_size_1"
+            android:layout_marginTop="@dimen/widget_size_10"
+            android:background="@color/line_color"
+            app:layout_constraintTop_toBottomOf="@+id/tv_event_title_key" />
+
+        <TextView
+            android:id="@+id/tv_title_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_size_10"
+            android:text="@string/event_title"
+            android:textColor="@color/color_666"
+            android:textSize="@dimen/font_size_16"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line1" />
+
+        <EditText
+            android:id="@+id/et_event_title"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/widget_size_30"
+            android:background="@null"
+            android:gravity="center|end"
+            android:hint="@string/input_title"
+            android:textColorHint="@color/color_aaa"
+            android:inputType="text"
+            android:paddingStart="@dimen/widget_size_10"
+            android:textColor="@color/color_666"
+            android:textSize="@dimen/font_size_16"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_title_key"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_title_key"
+            app:layout_constraintTop_toTopOf="@+id/tv_title_key"
+            tools:ignore="Autofill,LabelFor,RtlHardcoded,RtlSymmetry" />
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_min_size_1"
+            android:layout_marginTop="@dimen/widget_size_10"
+            android:background="@color/line_color"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_key" />
+
+        <TextView
+            android:id="@+id/tv_event_time_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_size_10"
+            android:text="@string/event_time"
+            android:textColor="@color/color_666"
+            android:textSize="@dimen/font_size_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+        <ylc.love.wxj.com.widget.DrawableTextView
+            android:id="@+id/tv_event_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_size_10"
+            android:textColor="@color/color_999"
+            android:textSize="@dimen/font_size_16"
+            app:drawableHeight="@dimen/widget_size_15"
+            app:drawableRight="@drawable/icon_arrow_down"
+            app:drawableWidth="@dimen/widget_size_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line2"
+            tools:text="2021-01-28" />
+
+        <View
+            android:id="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_min_size_1"
+            android:layout_marginTop="@dimen/widget_size_10"
+            android:background="@color/line_color"
+            app:layout_constraintTop_toBottomOf="@+id/tv_event_time" />
+
+        <TextView
+            android:id="@+id/tv_des_key"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_size_10"
+            android:text="@string/event_des"
+            android:textColor="@color/color_666"
+            android:textSize="@dimen/font_size_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line3" />
+
+        <EditText
+            android:id="@+id/et_des"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="@dimen/widget_size_10"
+            android:layout_marginBottom="@dimen/widget_size_15"
+            android:background="@null"
+            android:hint="@string/input_event_detail"
+            android:inputType="text"
+            android:textColor="@color/color_666"
+            android:textSize="@dimen/font_size_16"
+            app:layout_constraintBottom_toTopOf="@+id/btn_save"
+            app:layout_constraintTop_toBottomOf="@+id/tv_des_key"
+            tools:ignore="Autofill,LabelFor" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_50"
+            android:layout_marginStart="@dimen/widget_size_15"
+            android:layout_marginEnd="@dimen/widget_size_15"
+            android:text="@string/save"
+            android:textSize="@dimen/font_size_18"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
