@@ -10,10 +10,6 @@
             type="ylc.love.wxj.com.ui.create.CreateEventActivity.ClickProxy" />
 
         <variable
-            name="eventBean"
-            type="ylc.love.wxj.com.model.EventBean" />
-
-        <variable
             name="vm"
             type="ylc.love.wxj.com.ui.create.CreateEventViewModel" />
     </data>
@@ -45,6 +41,7 @@
             android:paddingStart="@dimen/widget_size_10"
             android:textColor="@color/color_666"
             android:textSize="@dimen/font_size_16"
+            android:text="@{vm.eventTitle}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_title_key"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_title_key"
@@ -79,6 +76,7 @@
             app:drawableHeight="@dimen/widget_size_15"
             app:drawableRight="@drawable/icon_arrow_down"
             app:drawableWidth="@dimen/widget_size_15"
+            android:text="@{vm.eventType}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_event_title_key"
             app:layout_constraintBottom_toBottomOf="@+id/tv_event_title_key"
@@ -115,6 +113,7 @@
             app:drawableHeight="@dimen/widget_size_15"
             app:drawableRight="@drawable/icon_arrow_down"
             app:drawableWidth="@dimen/widget_size_15"
+            android:onClick="@{()->click.selectDate()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/line2"
             tools:text="2021-01-28" />
@@ -148,6 +147,7 @@
             android:gravity="start"
             android:hint="@string/input_event_detail"
             android:inputType="text"
+            android:text="@{vm.eventDes}"
             android:textColor="@color/color_666"
             android:textColorHint="@color/color_aaa"
             android:textSize="@dimen/font_size_16"
@@ -164,6 +164,7 @@
             android:text="@string/save"
             android:textSize="@dimen/font_size_18"
             android:textStyle="bold"
+            android:onClick="@{()->click.saveEvent()}"
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -9,7 +9,8 @@ import kotlinx.android.synthetic.main.activity_main_layout.*
 import ylc.love.wxj.com.base.BaseActivity
 import ylc.love.wxj.com.model.AppDataBase
 import ylc.love.wxj.com.model.BillTypeBean
-import ylc.love.wxj.com.model.DateBean
+import ylc.love.wxj.com.model.EventBean
+import ylc.love.wxj.com.model.EventTypeBean
 import ylc.love.wxj.com.ui.create.CreateEventActivity
 
 class MainActivity : BaseActivity() {
@@ -29,10 +30,23 @@ class MainActivity : BaseActivity() {
     override fun initData() {
         initBillTypeBean()
         initDateBean()
+        initEventTypeBean()
         create.setOnClickListener {
             toNextActivity(CreateEventActivity::class.java)
         }
     }
+
+    private fun initEventTypeBean() = runOnThread(work = {
+        val eventTypeBeanDao = AppDataBase.instance.eventTypeBeanDao()
+        val selectAll = eventTypeBeanDao.selectAll()
+        if(selectAll.isEmpty()){
+            val array: Array<String> = resources.getStringArray(R.array.event_type_array)
+            repeat(array.count()){
+                val bean = EventTypeBean(it+1,array[it])
+                eventTypeBeanDao.insert(bean)
+            }
+        }
+    })
 
     private fun initBillTypeBean() = runOnThread(work = {
         val billTypeBeanDao = AppDataBase.instance.billTypeBeanDao()
@@ -48,14 +62,15 @@ class MainActivity : BaseActivity() {
     })
 
     private fun initDateBean() = runOnThread(work = {
-        val dataBeanDao = AppDataBase.instance.dateBeanDao()
+        val dataBeanDao = AppDataBase.instance.eventBeanDao()
         val list = dataBeanDao.selectAll()
         if (list.isEmpty()) {
             val stringArray = resources.getStringArray(R.array.BillTypeString)
             val id = System.currentTimeMillis()
             repeat(stringArray.count()) {
-                val ben = DateBean(
+                val ben = EventBean(
                     id + it,
+                    1,
                     stringArray[it],
                     "${it}现在基本上是个APP，里面都少不了CardView优美的身影，而UI基本上设计出来的都是带着各种颜色的CardView,美其名曰，搭配起来好看。好吧，咱也不敢说，咱也不敢问，搞呗",
                     id - ((it + 1) * 1000 * 60 * 60 * 24),

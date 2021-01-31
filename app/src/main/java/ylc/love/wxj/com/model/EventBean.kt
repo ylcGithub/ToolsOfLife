@@ -1,8 +1,27 @@
 package ylc.love.wxj.com.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.util.*
+
 /**
  *@author YLC-D
- *@create on 2021/1/28 10
- *说明: eventType: 1表示日期时间 2表示记账时间 3表示心情事件
+ *@create on 2021/1/27 12
+ *说明:日期时间 数据表
  */
-data class EventBean(var eventType: Int, var title: String, var des: String, var date: Long)
+@Entity
+data class EventBean(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long,
+    @ColumnInfo
+    val type:Int,
+    @ColumnInfo
+    var title: String?,
+    @ColumnInfo
+    var des: String?,
+    @ColumnInfo
+    var date: Long,
+    @ColumnInfo
+    var createDate:Long
+)

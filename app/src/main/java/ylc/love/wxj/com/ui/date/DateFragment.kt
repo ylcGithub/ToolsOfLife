@@ -4,16 +4,14 @@ import android.os.Build
 import android.text.TextUtils
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_date.*
-import ylc.love.wxj.com.BuildConfig
 import ylc.love.wxj.com.R
 import ylc.love.wxj.com.base.BaseFragment
 import ylc.love.wxj.com.base.BaseOneLayoutAdapter
 import ylc.love.wxj.com.base.BaseViewHolder
 import ylc.love.wxj.com.databinding.DateListItemBinding
 import ylc.love.wxj.com.databinding.FragmentDateBinding
-import ylc.love.wxj.com.model.DateBean
+import ylc.love.wxj.com.model.EventBean
 import ylc.love.wxj.com.utils.DateUtils
 import ylc.love.wxj.com.utils.ResUtil
 import ylc.love.wxj.com.widget.CustomItemDecoration
@@ -44,14 +42,14 @@ class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
 
 
     private val listAdapter =
-        object : BaseOneLayoutAdapter<DateBean, DateListItemBinding>(R.layout.date_list_item) {
-            override fun itemIsSame(oldItem: DateBean, newItem: DateBean): Boolean =
+        object : BaseOneLayoutAdapter<EventBean, DateListItemBinding>(R.layout.date_list_item) {
+            override fun itemIsSame(oldItem: EventBean, newItem: EventBean): Boolean =
                 oldItem.id == newItem.id
 
             @RequiresApi(Build.VERSION_CODES.Q)
             override fun onBindItem(
                 bind: DateListItemBinding,
-                item: DateBean,
+                item: EventBean,
                 holder: BaseViewHolder
             ) {
                 bind.tvTitle.text = item.title

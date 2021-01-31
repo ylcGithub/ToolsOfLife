@@ -4,10 +4,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import ylc.love.wxj.com.base.LifeApplication
-import ylc.love.wxj.com.model.dao.BillBeanDao
 import ylc.love.wxj.com.model.dao.BillTypeBeanDao
-import ylc.love.wxj.com.model.dao.DateBeanDao
-import ylc.love.wxj.com.model.dao.MoodBeanDao
+import ylc.love.wxj.com.model.dao.EventBeanDao
+import ylc.love.wxj.com.model.dao.EventTypeBeanDao
 
 /**
  * @author Administrator
@@ -15,20 +14,20 @@ import ylc.love.wxj.com.model.dao.MoodBeanDao
  * 说明: 数据声明
  */
 @Database(
-    entities = [DateBean::class, MoodBean::class, BillBean::class, BillTypeBean::class],
+    entities = [EventBean::class, EventTypeBean::class, BillTypeBean::class],
     version = 1,
     exportSchema = false
 )
 abstract class AppDataBase : RoomDatabase() {
 
-    abstract fun dateBeanDao(): DateBeanDao
-    abstract fun moodBeanDao(): MoodBeanDao
-    abstract fun billBeanDao(): BillBeanDao
+    abstract fun eventBeanDao(): EventBeanDao
+    abstract fun eventTypeBeanDao(): EventTypeBeanDao
     abstract fun billTypeBeanDao(): BillTypeBeanDao
 
     companion object {
         val instance = Single.sin
     }
+
     private object Single {
         val sin: AppDataBase = Room.databaseBuilder(
             LifeApplication.getAppContext(),

@@ -1,13 +1,21 @@
 package ylc.love.wxj.com.ui.create
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.graphics.Color
+import android.os.Build
+import android.widget.DatePicker
+import androidx.annotation.RequiresApi
 import kotlinx.android.synthetic.main.activity_create_event.*
+import kotlinx.android.synthetic.main.date_list_item.*
 import ylc.love.wxj.com.R
 import ylc.love.wxj.com.base.BaseMvvmActivity
 import ylc.love.wxj.com.databinding.ActivityCreateEventBinding
 import ylc.love.wxj.com.model.EventBean
 import ylc.love.wxj.com.model.SelectTypeBean
+import ylc.love.wxj.com.utils.DateUtils
 import ylc.love.wxj.com.widget.SelectTypePopWindow
+import java.util.*
 
 /**
  *@author YLC-D
@@ -22,23 +30,22 @@ class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreat
     override fun initData() {
         mBinding.click = ClickProxy()
         mBinding.vm = mViewModel
-        mBinding.eventBean = EventBean(1, "", "", 0L)
         initType()
     }
 
-    var list:List<SelectTypeBean> ? = null
+    var list: List<SelectTypeBean>? = null
     private fun initType() {
         typeListWindow = SelectTypePopWindow(this)
         typeListWindow?.listener = object : SelectTypePopWindow.CustomClickListener {
             override fun onClick(item: String) {
-               tv_event_title.text = item
+               mViewModel.eventType.value = item
             }
         }
         typeListWindow?.setBackgroundColor(Color.TRANSPARENT)
-        val  array:Array<String> = resources.getStringArray(R.array.event_type_array)
+        val array: Array<String> = resources.getStringArray(R.array.event_type_array)
         tv_event_title.text = array[0]
-        list = List(array.size){
-            SelectTypeBean(it,array[it])
+        list = List(array.size) {
+            SelectTypeBean(it, array[it])
         }
         typeListWindow?.list = list
     }
@@ -50,6 +57,28 @@ class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreat
 
         fun clickEventType() {
             typeListWindow?.showPopupWindow(tv_event_title)
+        }
+
+        @SuppressLint("SetTextI18n")
+        @RequiresApi(Build.VERSION_CODES.N)
+        fun selectDate() {
+            val calender = Calendar.getInstance()
+            val dialog: DatePickerDialog = DatePickerDialog(
+                this@CreateEventActivity,
+                { view, year, month, dayOfMonth ->
+                    val time = "$year-${month + 1}-$dayOfMonth"
+                    tv_event_time.text = time
+                    mViewModel.eventDate.value =  DateUtils.getDateFromStr(time,"yyyy-MM-dd")
+                },
+                calender.get(Calendar.YEAR),
+                calender.get(Calendar.MONTH),
+                calender.get(Calendar.DAY_OF_MONTH)
+            )
+            dialog.show()
+        }
+
+        fun saveEvent(){
+            mViewModel.saveEvent()
         }
     }
 
