@@ -1,12 +1,14 @@
 package ylc.love.wxj.com
 
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import ylc.love.wxj.com.base.BaseActivity
+import ylc.love.wxj.com.expand.toast
 import ylc.love.wxj.com.model.AppDataBase
 import ylc.love.wxj.com.model.BillTypeBean
 import ylc.love.wxj.com.model.EventBean
@@ -29,8 +31,19 @@ class MainActivity : BaseActivity() {
         create.setOnClickListener {
             toNextActivity(CreateEventActivity::class.java)
         }
+        nav_view.setOnNavigationItemSelectedListener { item ->
+            if(item.itemId == R.id.nav_setting) {
+                create.visibility = View.GONE
+            }else{
+                create.visibility = View.VISIBLE
+            }
+            true
+        }
     }
 
+    /**
+     * 初始化事件类型数据
+     */
     private fun initEventTypeBean() = runOnThread(work = {
         val eventTypeBeanDao = AppDataBase.instance.eventTypeBeanDao()
         val selectAll = eventTypeBeanDao.selectAll()
@@ -43,6 +56,9 @@ class MainActivity : BaseActivity() {
         }
     })
 
+    /**
+     * 初始化账单类型数据
+     */
     private fun initBillTypeBean() = runOnThread(work = {
         val billTypeBeanDao = AppDataBase.instance.billTypeBeanDao()
         val list = billTypeBeanDao.selectAll()

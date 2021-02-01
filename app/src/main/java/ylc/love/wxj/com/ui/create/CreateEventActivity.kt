@@ -63,15 +63,15 @@ class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreat
     private fun initType() {
         typeListWindow = SelectTypePopWindow(this)
         typeListWindow?.listener = object : SelectTypePopWindow.CustomClickListener {
-            override fun onClick(item: String) {
-                mViewModel.eventType.postValue(item)
+            override fun onClick(id:Int,type: String) {
+                mViewModel.eventType.postValue(id)
+                tv_event_type.text = type
             }
         }
         typeListWindow?.setBackgroundColor(Color.TRANSPARENT)
         val array: Array<String> = resources.getStringArray(R.array.event_type_array)
-        mViewModel.eventType.postValue(array[0])
         list = List(array.size) {
-            SelectTypeBean(it, array[it])
+            SelectTypeBean(it+1, array[it])
         }
         typeListWindow?.list = list
     }
@@ -81,8 +81,12 @@ class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreat
 
     inner class ClickProxy {
 
+        fun back(){
+            finishActivity()
+        }
+
         fun clickEventType() {
-            typeListWindow?.showPopupWindow(tv_event_title)
+            typeListWindow?.showPopupWindow(tv_event_type)
         }
 
         fun clickBillType(){

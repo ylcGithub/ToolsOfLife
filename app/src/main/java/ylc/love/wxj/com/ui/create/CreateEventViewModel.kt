@@ -15,7 +15,7 @@ import ylc.love.wxj.com.utils.LogUtil
  */
 class CreateEventViewModel : BaseViewModel() {
     val eventTitle: MutableLiveData<String> = MutableLiveData()
-    val eventType: MutableLiveData<String> = MutableLiveData()
+    val eventType: MutableLiveData<Int> = MutableLiveData(1)
     val isBillType:MutableLiveData<Boolean> = MutableLiveData(false)
     val billType: MutableLiveData<Int> = MutableLiveData()
     val eventDate: MutableLiveData<Long> = MutableLiveData()
@@ -40,7 +40,7 @@ class CreateEventViewModel : BaseViewModel() {
         val currMill = System.currentTimeMillis()
         val bean = EventBean(
             currMill,
-            EventTypeUtil.getType(eventType.value),
+            eventType.value?:1,
             eventTitle.value,
             eventDes.value,
             eventDate.value ?: currMill,

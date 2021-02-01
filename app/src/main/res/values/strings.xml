@@ -17,6 +17,7 @@
     <string name="input_des">输入描述</string>
     <string name="save">保存</string>
     <string name="create">新建</string>
+    <string name="setting">设置</string>
 
     <string name="title">标题</string>
     <string name="event_title">事件标题</string>

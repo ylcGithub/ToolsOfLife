@@ -61,7 +61,7 @@ class SelectTypePopWindow(context: Context) : BasePopupWindow(context) {
             bind.tvTypeTitle.text = "${item.id}."
             bind.tvType.text = item.type
             bind.root.setOnClickListener {
-                listener?.onClick(item.type)
+                listener?.onClick(item.id,item.type)
                 dismiss()
             }
         }
@@ -70,7 +70,7 @@ class SelectTypePopWindow(context: Context) : BasePopupWindow(context) {
     var listener: CustomClickListener? = null
 
     interface CustomClickListener {
-        fun onClick(item: String)
+        fun onClick(id:Int,type: String)
     }
 
 }

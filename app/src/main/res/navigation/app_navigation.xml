@@ -9,27 +9,28 @@
         android:id="@+id/nav_date"
         android:name="ylc.love.wxj.com.ui.date.DateFragment"
         android:label="@string/date"
-        tools:layout="@layout/fragment_date">
-    </fragment>
+        tools:layout="@layout/fragment_date"/>
 
     <fragment
         android:id="@+id/nav_bill"
         android:name="ylc.love.wxj.com.ui.bill.BillFragment"
         android:label="@string/bill"
-        tools:layout="@layout/fragment_bill">
-
-    </fragment>
+        tools:layout="@layout/fragment_bill"/>
 
     <fragment
         android:id="@+id/nav_mood"
         android:name="ylc.love.wxj.com.ui.mood.MoodFragment"
         android:label="@string/mood"
-        tools:layout="@layout/fragment_mood">
-
-    </fragment>
+        tools:layout="@layout/fragment_mood"/>
     <fragment
         android:id="@+id/nav_aunt"
         android:name="ylc.love.wxj.com.ui.aunt.AuntFragment"
         android:label="@string/aunt_date"
         tools:layout="@layout/fragment_aunt" />
+
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="ylc.love.wxj.com.ui.setting.SettingFragment"
+        android:label="@string/setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>

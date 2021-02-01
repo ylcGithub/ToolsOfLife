@@ -18,6 +18,11 @@
         android:title="@string/mood"/>
     <item
         android:id="@+id/nav_aunt"
-        android:icon="@drawable/icon_loyalty"
+        android:icon="@drawable/icon_aunt"
         android:title="@string/aunt"/>
+
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/icon_setting"
+        android:title="@string/setting"/>
 </menu>
