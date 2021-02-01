@@ -12,6 +12,7 @@
     <color name="color_333">#333</color>
     <color name="color_666">#666</color>
     <color name="color_999">#999</color>
+    <color name="color_BBB">#BBB</color>
     <color name="transparent">#00000000</color>
     <!--AppImageView 里 图片点击的 默认滤镜-->
     <color name="image_press_color">#AA000000</color>

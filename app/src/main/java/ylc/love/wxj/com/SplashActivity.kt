@@ -30,6 +30,7 @@ class SplashActivity : BaseActivity() {
                 Log.d("AnimLogoView", "Gradient anim end")
                 if (BuildConfig.DEBUG) {
                     toNextActivity(MainActivity::class.java)
+                    finishActivity()
                 } else {
                     verifyFingerPrint()
                 }
@@ -48,6 +49,7 @@ class SplashActivity : BaseActivity() {
 
                 override fun onOk() {
                     toNextActivity(MainActivity::class.java)
+                    finishActivity()
                 }
             }
             window.showPopupWindow()

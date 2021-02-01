@@ -9,6 +9,6 @@ import android.util.Log
  */
 object LogUtil {
     fun log(errorMsg: String) {
-        Log.e("小工厂", errorMsg)
+        Log.e("臭妹妹", errorMsg)
     }
 }

@@ -18,6 +18,6 @@ interface EventBeanDao : BaseDao<EventBean> {
     @Query("select * from EventBean where id = :id")
     fun selectById(id: Long): EventBean?
 
-    @Query("select * from EventBean")
-    fun selectAll(): List<EventBean>
+    @Query("select * from EventBean where type = :type")
+    fun selectAllByType(type:Int): List<EventBean>
 }

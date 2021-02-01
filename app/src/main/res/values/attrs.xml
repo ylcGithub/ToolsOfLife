@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="AppTitle">
+        <!--没有标题栏 只有错误页面-->
+        <attr name="no_title" format="boolean" />
+        <attr name="title" format="string" />
+        <attr name="title_color" format="color" />
+        <attr name="title_size" format="dimension" />
+        <attr name="title_background" format="color" />
+        <!--回退位置的图标，标题栏的最左边-->
+        <attr name="back_icon" format="reference" />
+        <attr name="no_back_icon" format="boolean" />
+        <attr name="right_one_icon" format="reference" />
+        <attr name="right_two_icon" format="reference" />
+        <attr name="right_one_text" format="string" />
+        <attr name="right_two_text" format="string" />
+        <attr name="right_one_text_color" format="color" />
+        <attr name="right_two_text_color" format="color" />
+        <attr name="right_one_text_pressed_color" format="color" />
+        <attr name="right_two_text_pressed_color" format="color" />
+    </declare-styleable>
+
     <declare-styleable name="AppImageView">
         <attr name="image_pressed_color" format="color" />
         <!--宽高比值 比值为1 表示 高度等于宽度 默认没有改变控件高度，设置后才改变-->

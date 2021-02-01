@@ -6,13 +6,23 @@
     <data>
 
     </data>
-    <RelativeLayout
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.date.DateFragment">
+
+        <ylc.love.wxj.com.widget.AppTitle
+            android:id="@+id/app_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:no_back_icon="true"
+            app:title="@string/important_date" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_date"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </RelativeLayout>
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </layout>

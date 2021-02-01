@@ -1,5 +1,6 @@
 package ylc.love.wxj.com.ui.date
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.text.TextUtils
 import androidx.annotation.RequiresApi
@@ -46,6 +47,7 @@ class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
             override fun itemIsSame(oldItem: EventBean, newItem: EventBean): Boolean =
                 oldItem.id == newItem.id
 
+            @SuppressLint("SetTextI18n")
             @RequiresApi(Build.VERSION_CODES.Q)
             override fun onBindItem(
                 bind: DateListItemBinding,
@@ -54,9 +56,9 @@ class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
             ) {
                 bind.tvTitle.text = item.title
                 bind.tvTitleDate.text = DateUtils.getDateStr(item.date, "yyyy-MM-dd")
-                bind.tvGone.text = DateUtils.getGone(item.date)
-                bind.tvNeedTime.text = DateUtils.getNeed(item.date)
-                bind.tvDes.text = item.des
+                bind.tvGone.text = "${item.goneDay}天"
+                bind.tvNeedTime.text = "${item.needDay}天"
+                bind.tvDes.text = item.des ?: item.title
                 bind.tvDes.setOnClickListener {
                     if (bind.tvDes.maxLines == 1) {
                         bind.tvDes.maxLines = 10

@@ -149,33 +149,31 @@ object DateUtils {
     /**
      * 返回 传入时间 距离当前时间已经过去多少天
      */
-    fun getGone(oldTime: Long): String {
+    fun getGone(oldTime: Long): Int {
         val diff = System.currentTimeMillis() - oldTime
-        val day = (diff / 24 / 60 / 60 / 1000).toInt()
-        return "${day}天"
+        return (diff / 24 / 60 / 60 / 1000).toInt()
     }
 
     /**
      * 计算还差多少天才到这个时间
      */
-    fun getNeed(oldTime: Long): String {
+    fun getNeed(oldTime: Long): Int {
         //得到一个Calendar的实例
         val ca: Calendar = Calendar.getInstance()
         //设置时间
         ca.time = Date(oldTime)
         var diffYear = 1
-        while (System.currentTimeMillis() > ca.time.time){
-            ca.add(Calendar.YEAR,diffYear)
+        while (System.currentTimeMillis() > ca.time.time) {
+            ca.add(Calendar.YEAR, diffYear)
             diffYear++
         }
         val diff = ca.time.time - getCurrentMill()
-        val diffDay = (diff / (24 * 60 * 60 * 1000))
-        return "${diffDay}天"
+        return (diff / (24 * 60 * 60 * 1000)).toInt()
     }
 
-    private fun getCurrentMill():Long{
+    private fun getCurrentMill(): Long {
         val dateStr = getDateStr(System.currentTimeMillis(), "yyyy-MM-dd")
-        return getDateFromStr(dateStr,"yyyy-MM-dd")
+        return getDateFromStr(dateStr, "yyyy-MM-dd")
     }
 }
 

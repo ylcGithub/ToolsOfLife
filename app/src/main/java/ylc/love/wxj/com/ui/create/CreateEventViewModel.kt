@@ -1,12 +1,12 @@
 package ylc.love.wxj.com.ui.create
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ylc.love.wxj.com.base.BaseViewModel
 import ylc.love.wxj.com.expand.toast
 import ylc.love.wxj.com.model.AppDataBase
 import ylc.love.wxj.com.model.EventBean
 import ylc.love.wxj.com.utils.EventTypeUtil
+import ylc.love.wxj.com.utils.LogUtil
 
 /**
  *@author YLC-D
@@ -16,8 +16,11 @@ import ylc.love.wxj.com.utils.EventTypeUtil
 class CreateEventViewModel : BaseViewModel() {
     val eventTitle: MutableLiveData<String> = MutableLiveData()
     val eventType: MutableLiveData<String> = MutableLiveData()
+    val isBillType:MutableLiveData<Boolean> = MutableLiveData(false)
+    val billType: MutableLiveData<Int> = MutableLiveData()
     val eventDate: MutableLiveData<Long> = MutableLiveData()
     val eventDes: MutableLiveData<String> = MutableLiveData()
+    val saveState: MutableLiveData<Boolean> = MutableLiveData()
 
     fun saveEvent() {
         if (eventTitle.value == null) {
@@ -43,7 +46,8 @@ class CreateEventViewModel : BaseViewModel() {
             eventDate.value ?: currMill,
             currMill
         )
-        eventBeanDao.insert(bean)
-    })
+        val insert = eventBeanDao.insert(bean)
+        saveState.postValue(insert > 0)
+    }, catch = { e -> LogUtil.log(e.message.toString()) })
 
 }

@@ -6,20 +6,20 @@ import androidx.room.*
 interface BaseDao<T> {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(list: MutableList<T>)
+    fun insertAll(list: MutableList<T>):List<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(element: T)
+    fun insert(element: T):Long
 
     @Delete
-    fun delete(element: T)
+    fun delete(element: T):Int
 
     @Delete
-    fun deleteList(elements:MutableList<T>)
+    fun deleteList(elements:MutableList<T>):Int
 
     @Delete
-    fun deleteSome(vararg elements:T)
+    fun deleteSome(vararg elements:T):Int
 
     @Update
-    fun update(element: T)
+    fun update(element: T):Int
 }
