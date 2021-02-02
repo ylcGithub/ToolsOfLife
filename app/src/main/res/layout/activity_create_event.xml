@@ -98,7 +98,7 @@
                 app:drawableRight="@drawable/icon_arrow_down"
                 app:drawableWidth="@dimen/widget_size_15"
                 tools:ignore="RelativeOverlap"
-                tools:text="阿萨德离开" />
+                tools:text="日期事件" />
 
             <View
                 android:layout_width="match_parent"

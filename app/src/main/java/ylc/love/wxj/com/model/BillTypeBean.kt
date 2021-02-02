@@ -11,8 +11,8 @@ import androidx.room.PrimaryKey
  */
 @Entity
 data class BillTypeBean(
-    @PrimaryKey(autoGenerate = true)
-    val id:Long,
+    @PrimaryKey
+    val id:Int,
     @ColumnInfo
     val type:String
 )

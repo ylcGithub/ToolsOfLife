@@ -15,8 +15,8 @@ import ylc.love.wxj.com.utils.LogUtil
  */
 class CreateEventViewModel : BaseViewModel() {
     val eventTitle: MutableLiveData<String> = MutableLiveData()
-    val eventType: MutableLiveData<Int> = MutableLiveData(1)
-    val isBillType:MutableLiveData<Boolean> = MutableLiveData(false)
+    private val eventType: MutableLiveData<Int> = MutableLiveData(1)
+    val isBillType: MutableLiveData<Boolean> = MutableLiveData(false)
     val billType: MutableLiveData<Int> = MutableLiveData()
     val eventDate: MutableLiveData<Long> = MutableLiveData()
     val eventDes: MutableLiveData<String> = MutableLiveData()
@@ -40,7 +40,7 @@ class CreateEventViewModel : BaseViewModel() {
         val currMill = System.currentTimeMillis()
         val bean = EventBean(
             currMill,
-            eventType.value?:1,
+            eventType.value ?: 1,
             eventTitle.value,
             eventDes.value,
             eventDate.value ?: currMill,
@@ -50,4 +50,8 @@ class CreateEventViewModel : BaseViewModel() {
         saveState.postValue(insert > 0)
     }, catch = { e -> LogUtil.log(e.message.toString()) })
 
+    fun setEventType(type: Int) {
+        eventType.postValue(type)
+        isBillType.postValue(type == 2)
+    }
 }

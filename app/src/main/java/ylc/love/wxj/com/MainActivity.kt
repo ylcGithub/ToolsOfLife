@@ -1,17 +1,12 @@
 package ylc.love.wxj.com
 
 import android.os.Bundle
-import android.view.View
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import ylc.love.wxj.com.base.BaseActivity
-import ylc.love.wxj.com.expand.toast
 import ylc.love.wxj.com.model.AppDataBase
 import ylc.love.wxj.com.model.BillTypeBean
-import ylc.love.wxj.com.model.EventBean
 import ylc.love.wxj.com.model.EventTypeBean
 import ylc.love.wxj.com.ui.create.CreateEventActivity
 
@@ -31,14 +26,7 @@ class MainActivity : BaseActivity() {
         create.setOnClickListener {
             toNextActivity(CreateEventActivity::class.java)
         }
-        nav_view.setOnNavigationItemSelectedListener { item ->
-            if(item.itemId == R.id.nav_setting) {
-                create.visibility = View.GONE
-            }else{
-                create.visibility = View.VISIBLE
-            }
-            true
-        }
+        //w
     }
 
     /**
@@ -64,9 +52,8 @@ class MainActivity : BaseActivity() {
         val list = billTypeBeanDao.selectAll()
         if (list.isEmpty()) {
             val stringArray = resources.getStringArray(R.array.BillTypeString)
-            val id = System.currentTimeMillis()
             repeat(stringArray.count()) {
-                val ben = BillTypeBean(id + it, stringArray[it])
+                val ben = BillTypeBean(it + 1, stringArray[it])
                 billTypeBeanDao.insert(ben)
             }
         }

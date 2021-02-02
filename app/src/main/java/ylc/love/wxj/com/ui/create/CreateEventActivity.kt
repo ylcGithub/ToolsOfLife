@@ -12,6 +12,7 @@ import ylc.love.wxj.com.R
 import ylc.love.wxj.com.base.BaseMvvmActivity
 import ylc.love.wxj.com.databinding.ActivityCreateEventBinding
 import ylc.love.wxj.com.expand.toast
+import ylc.love.wxj.com.model.AppDataBase
 import ylc.love.wxj.com.model.SelectTypeBean
 import ylc.love.wxj.com.utils.DateUtils
 import ylc.love.wxj.com.widget.SelectTypePopWindow
@@ -30,7 +31,7 @@ class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreat
     override fun initData() {
         mBinding.click = ClickProxy()
         mBinding.vm = mViewModel
-        initType()
+        initWindow()
         et_title.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -59,38 +60,58 @@ class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreat
         })
     }
 
-    var list: List<SelectTypeBean>? = null
-    private fun initType() {
+    var typeListWindow: SelectTypePopWindow? = null
+    private fun initWindow() {
         typeListWindow = SelectTypePopWindow(this)
-        typeListWindow?.listener = object : SelectTypePopWindow.CustomClickListener {
-            override fun onClick(id:Int,type: String) {
-                mViewModel.eventType.postValue(id)
-                tv_event_type.text = type
-            }
-        }
         typeListWindow?.setBackgroundColor(Color.TRANSPARENT)
-        val array: Array<String> = resources.getStringArray(R.array.event_type_array)
-        list = List(array.size) {
-            SelectTypeBean(it+1, array[it])
-        }
-        typeListWindow?.list = list
     }
 
+    var eventTypeList: List<SelectTypeBean>? = null
+    var billTypeList: List<SelectTypeBean>? = null
 
-    var typeListWindow: SelectTypePopWindow? = null
 
     inner class ClickProxy {
 
-        fun back(){
+        fun back() {
             finishActivity()
         }
 
         fun clickEventType() {
+            //设置监听
+            typeListWindow?.listener = object : SelectTypePopWindow.CustomClickListener {
+                override fun onClick(id: Int, type: String) {
+                    mViewModel.setEventType(id)
+                    tv_event_type.text = type
+                }
+            }
+            //初始化数据源
+            if (eventTypeList == null) {
+                val array: Array<String> = resources.getStringArray(R.array.event_type_array)
+                eventTypeList = List(array.size) {
+                    SelectTypeBean(it + 1, array[it])
+                }
+            }
+            typeListWindow?.list = eventTypeList
             typeListWindow?.showPopupWindow(tv_event_type)
         }
 
-        fun clickBillType(){
-
+        fun clickBillType() {
+            //设置监听
+            typeListWindow?.listener = object : SelectTypePopWindow.CustomClickListener {
+                override fun onClick(id: Int, type: String) {
+                    mViewModel.billType.postValue(id)
+                    tv_bill_type.text = type
+                }
+            }
+            //初始化数据源
+            val billTypeBeanDao = AppDataBase.instance.billTypeBeanDao()
+            val list = billTypeBeanDao.selectAll()
+            val count = list.size
+            billTypeList = List(count) {
+                SelectTypeBean(list[it].id, list[it].type)
+            }
+            typeListWindow?.list = eventTypeList
+            typeListWindow?.showPopupWindow(tv_event_type)
         }
 
         @SuppressLint("SetTextI18n")

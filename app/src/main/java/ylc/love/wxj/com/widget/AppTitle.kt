@@ -67,7 +67,7 @@ class AppTitle @JvmOverloads constructor(
             typedArray.getColor(R.styleable.AppTitle_right_two_text_pressed_color, -1)
 
         typedArray.recycle()
-
+        rl_box.setBackgroundColor(titleBackgroundColor)
         if (noTitle) {
             tv_title.visibility = GONE
             iv_back.visibility = GONE
@@ -75,7 +75,6 @@ class AppTitle @JvmOverloads constructor(
             tv_title.text = title
             tv_title.setTextColor(titleColor)
             tv_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize)
-            tv_title.setBackgroundColor(titleBackgroundColor)
             if (noBackIcon) {
                 iv_back.visibility = GONE
             } else {
@@ -84,12 +83,12 @@ class AppTitle @JvmOverloads constructor(
             rightOneText?.let {
                 tv_right_one.text = rightOneText
                 tv_right_one.visibility = VISIBLE
-                setTextViewColor(rightOneTextColor,rightOneTextPressedColor,tv_right_one)
+                setTextViewColor(rightOneTextColor, rightOneTextPressedColor, tv_right_one)
             }
             rightTwoText?.let {
                 tv_right_two.text = rightTwoText
                 tv_right_two.visibility = VISIBLE
-                setTextViewColor(rightTwoTextColor,rightTwoTextPressedColor,tv_right_two)
+                setTextViewColor(rightTwoTextColor, rightTwoTextPressedColor, tv_right_two)
             }
             if (rightOneIcon != -1) {
                 iv_right_one.setImageResource(rightOneIcon)
