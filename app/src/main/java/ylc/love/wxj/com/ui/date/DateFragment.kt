@@ -23,8 +23,7 @@ class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
         getViewModelProvider(this).get(DateViewModel::class.java)
 
     override fun initData() {
-        rcv_date.layoutManager =
-            LinearLayoutManager(context).also { it.orientation = LinearLayoutManager.VERTICAL }
+        rcv_date.layoutManager = LinearLayoutManager(context)
         rcv_date.adapter = listAdapter
         mViewModel.getAllDateBeans()
         if (rcv_date.itemDecorationCount == 0) {

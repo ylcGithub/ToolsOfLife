@@ -87,6 +87,23 @@ object DateUtils {
     }
 
     /**
+     * 获取当月开始的时间戳
+     */
+    @SuppressLint("SimpleDateFormat")
+    @JvmStatic
+    fun getCurrMonthStartTime(): Long {
+        val dateFormat = SimpleDateFormat("yyyy-MM")
+        var date: Date? = Date()
+        try {
+            val time = "${getCurDateStr("yyyy")}-${getCurDateStr("MM")}"
+            date = dateFormat.parse(time)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+        return date?.time ?: 0
+    }
+
+    /**
      * 根据年月日获取时间戳
      * date yyyy-MM-dd
      */
