@@ -28,7 +28,7 @@ class SplashActivity : BaseActivity() {
 
             override fun onAnimationEnd(animation: Animator) {
                 Log.d("AnimLogoView", "Gradient anim end")
-                if (BuildConfig.DEBUG) {
+                if (!BuildConfig.DEBUG) {
                     toNextActivity(MainActivity::class.java)
                     finishActivity()
                 } else {

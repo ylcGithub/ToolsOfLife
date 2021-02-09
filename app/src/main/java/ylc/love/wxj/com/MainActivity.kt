@@ -26,7 +26,6 @@ class MainActivity : BaseActivity() {
         create.setOnClickListener {
             toNextActivity(CreateEventActivity::class.java)
         }
-        //w
     }
 
     /**

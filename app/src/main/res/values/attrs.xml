@@ -7,6 +7,7 @@
         <attr name="title_color" format="color" />
         <attr name="title_size" format="dimension" />
         <attr name="title_background" format="color" />
+        <attr name="status_is_light_mode" format="boolean"/>
         <!--回退位置的图标，标题栏的最左边-->
         <attr name="back_icon" format="reference" />
         <attr name="no_back_icon" format="boolean" />

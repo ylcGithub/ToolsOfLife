@@ -32,6 +32,7 @@ class AppTitle @JvmOverloads constructor(
 ) {
 
     private var titleBackgroundColor: Int
+    private var statusIsLightMode:Boolean = true
 
     init {
         inflate(context, R.layout.base_app_title_no_right, this)
@@ -65,7 +66,7 @@ class AppTitle @JvmOverloads constructor(
             typedArray.getColor(R.styleable.AppTitle_right_one_text_pressed_color, -1)
         val rightTwoTextPressedColor =
             typedArray.getColor(R.styleable.AppTitle_right_two_text_pressed_color, -1)
-
+        statusIsLightMode = typedArray.getBoolean(R.styleable.AppTitle_status_is_light_mode,true)
         typedArray.recycle()
         rl_box.setBackgroundColor(titleBackgroundColor)
         if (noTitle) {
@@ -144,7 +145,7 @@ class AppTitle @JvmOverloads constructor(
         }
     }
 
-    fun setClickBackListener(listener: OnClickListener) {
+    fun setClickBackListener(listener: OnClickListener?) {
         iv_back.setOnClickListener(listener)
     }
 
@@ -172,6 +173,8 @@ class AppTitle @JvmOverloads constructor(
         super.onLayout(changed, l, t, r, b)
         //这时控件已经加载完成
         if (!isInEditMode) {
+            if(statusIsLightMode) StatusBarUtil.setLightMode(context as Activity?)
+            else StatusBarUtil.setDarkMode(context as Activity?)
             StatusBarUtil.setTranslucent(context as Activity?, 0)
             StatusBarUtil.setColorNoTranslucent(context as Activity?, titleBackgroundColor)
         }

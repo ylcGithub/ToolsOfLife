@@ -12,7 +12,7 @@
         app:autoPlay="false"
         app:gradientAnimDuration="2000"
         app:gradientColor="@color/color_red"
-        app:logoName="Tools Of Life"
+        app:logoName="cai ❤ jie"
         app:offsetAnimDuration="1500"
         app:showGradient="true"
         app:textColor="@color/color_333"

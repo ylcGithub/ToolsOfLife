@@ -12,6 +12,7 @@ import ylc.love.wxj.com.base.BaseOneLayoutAdapter
 import ylc.love.wxj.com.base.BaseViewHolder
 import ylc.love.wxj.com.databinding.DateListItemBinding
 import ylc.love.wxj.com.databinding.FragmentDateBinding
+import ylc.love.wxj.com.model.AppDataBase
 import ylc.love.wxj.com.model.EventBean
 import ylc.love.wxj.com.utils.DateUtils
 import ylc.love.wxj.com.utils.ResUtil
@@ -67,7 +68,17 @@ class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
                         bind.tvDes.ellipsize = TextUtils.TruncateAt.END
                     }
                 }
+                bind.tvDes.setOnLongClickListener {
+                    deleteItem(holder.adapterPosition)
+                    showDeleteWindow(item)
+                    true
+                }
             }
         }
+
+    private fun showDeleteWindow(item:EventBean) {
+        val eventBeanDao = AppDataBase.instance.eventBeanDao()
+        eventBeanDao.delete(item)
+    }
 
 }

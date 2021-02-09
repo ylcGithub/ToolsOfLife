@@ -25,14 +25,16 @@
 
         <ylc.love.wxj.com.widget.AppTitle
             android:id="@+id/app_title"
-            app:title="@string/create_event"
+            titleBack="@{()->click.back()}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:title="@string/create_event" />
+
         <RelativeLayout
-            android:paddingStart="@dimen/widget_size_15"
-            android:paddingEnd="@dimen/widget_size_15"
             android:layout_width="match_parent"
             android:layout_height="@dimen/widget_size_55"
+            android:paddingStart="@dimen/widget_size_15"
+            android:paddingEnd="@dimen/widget_size_15"
             tools:ignore="UselessParent">
 
             <TextView
@@ -70,11 +72,11 @@
 
 
         <RelativeLayout
-            android:paddingStart="@dimen/widget_size_15"
-            android:paddingEnd="@dimen/widget_size_15"
             android:layout_width="match_parent"
             android:layout_height="@dimen/widget_size_55"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/widget_size_15"
+            android:paddingEnd="@dimen/widget_size_15">
 
             <TextView
                 android:id="@+id/tv_event_type_key"
@@ -109,11 +111,11 @@
 
 
         <RelativeLayout
-            android:paddingStart="@dimen/widget_size_15"
-            android:paddingEnd="@dimen/widget_size_15"
             android:id="@+id/rl_bill_type"
             android:layout_width="match_parent"
             android:layout_height="@dimen/widget_size_55"
+            android:paddingStart="@dimen/widget_size_15"
+            android:paddingEnd="@dimen/widget_size_15"
             android:visibility="@{vm.isBillType()?view.VISIBLE:view.GONE}">
 
             <TextView
@@ -148,10 +150,10 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:paddingStart="@dimen/widget_size_15"
-            android:paddingEnd="@dimen/widget_size_15"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/widget_size_55">
+            android:layout_height="@dimen/widget_size_55"
+            android:paddingStart="@dimen/widget_size_15"
+            android:paddingEnd="@dimen/widget_size_15">
 
             <TextView
                 android:id="@+id/tv_event_time_key"
@@ -188,19 +190,19 @@
             android:id="@+id/tv_des_key"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/widget_size_15"
             android:layout_marginTop="@dimen/widget_size_15"
             android:text="@string/event_des"
-            android:layout_marginStart="@dimen/widget_size_15"
             android:textColor="@color/color_666"
             android:textSize="@dimen/font_size_16" />
 
         <EditText
-            android:layout_marginStart="@dimen/widget_size_15"
-            android:layout_marginEnd="@dimen/widget_size_15"
             android:id="@+id/et_des"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginStart="@dimen/widget_size_15"
             android:layout_marginTop="@dimen/widget_size_15"
+            android:layout_marginEnd="@dimen/widget_size_15"
             android:layout_marginBottom="@dimen/widget_size_15"
             android:layout_weight="1"
             android:background="@null"
@@ -217,12 +219,12 @@
             android:id="@+id/btn_save"
             android:layout_width="match_parent"
             android:layout_height="@dimen/widget_size_50"
+            android:layout_marginStart="@dimen/widget_size_15"
+            android:layout_marginEnd="@dimen/widget_size_15"
+            android:layout_marginBottom="@dimen/widget_size_15"
             android:onClick="@{()->click.saveEvent()}"
             android:text="@string/save"
             android:textSize="@dimen/font_size_18"
-            android:layout_marginBottom="@dimen/widget_size_15"
-            android:layout_marginStart="@dimen/widget_size_15"
-            android:layout_marginEnd="@dimen/widget_size_15"
             android:textStyle="bold" />
     </LinearLayout>
 

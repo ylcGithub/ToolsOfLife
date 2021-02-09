@@ -58,6 +58,18 @@ class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreat
                 "保存失败".toast()
             }
         })
+
+        iniEventType()
+    }
+
+    //初始化事件类型数据源
+    private fun iniEventType() {
+        val array: Array<String> = resources.getStringArray(R.array.event_type_array)
+        eventTypeList = List(array.size) {
+            SelectTypeBean(it + 1, array[it])
+        }
+        tv_event_type.text = array[0]
+        mViewModel.setEventType(1)
     }
 
     var typeListWindow: SelectTypePopWindow? = null
@@ -82,13 +94,9 @@ class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreat
                 override fun onClick(id: Int, type: String) {
                     mViewModel.setEventType(id)
                     tv_event_type.text = type
-                }
-            }
-            //初始化数据源
-            if (eventTypeList == null) {
-                val array: Array<String> = resources.getStringArray(R.array.event_type_array)
-                eventTypeList = List(array.size) {
-                    SelectTypeBean(it + 1, array[it])
+                    if(id == 2){
+                        initBillTypeList()
+                    }
                 }
             }
             typeListWindow?.list = eventTypeList
@@ -103,6 +111,11 @@ class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreat
                     tv_bill_type.text = type
                 }
             }
+            typeListWindow?.list = billTypeList
+            typeListWindow?.showPopupWindow(tv_bill_type)
+        }
+
+        fun initBillTypeList(){
             //初始化数据源
             val billTypeBeanDao = AppDataBase.instance.billTypeBeanDao()
             val list = billTypeBeanDao.selectAll()
@@ -110,8 +123,8 @@ class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreat
             billTypeList = List(count) {
                 SelectTypeBean(list[it].id, list[it].type)
             }
-            typeListWindow?.list = eventTypeList
-            typeListWindow?.showPopupWindow(tv_event_type)
+            tv_bill_type.text = list[0].type
+            mViewModel.billType.postValue(list[0].id)
         }
 
         @SuppressLint("SetTextI18n")
