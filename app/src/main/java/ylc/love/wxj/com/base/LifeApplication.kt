@@ -3,6 +3,7 @@ package ylc.love.wxj.com.base
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
+import com.orhanobut.hawk.Hawk
 
 /**
  *@author YLC-D
@@ -14,6 +15,7 @@ class LifeApplication: Application() {
         super.onCreate()
         MultiDex.install(this)
         mAppContext = this
+        Hawk.init(this).build()
     }
 
     companion object {

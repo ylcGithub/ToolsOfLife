@@ -1,6 +1,8 @@
 package ylc.love.wxj.com.base
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +17,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import ylc.love.wxj.com.R
+import ylc.love.wxj.com.config.ParamsKey
+import ylc.love.wxj.com.utils.AppManager
+import java.lang.ref.WeakReference
 
 /**
  *@author YLC-D
@@ -92,6 +97,12 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> : Fragment(
 
     fun pageBack() {
         NavHostFragment.findNavController(this).navigateUp()
+    }
+
+    protected fun toNextActivity(cls: Class<out Activity>, bundle: Bundle? = null) {
+        val intent = Intent(mContext, cls)
+        intent.putExtra(ParamsKey.ACTIVITY_TO_ACTIVITY_DATA_KEY, bundle)
+        AppManager.start(WeakReference(mContext), intent)
     }
 
     @LayoutRes

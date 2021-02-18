@@ -1,6 +1,8 @@
 package ylc.love.wxj.com.common
 
+import android.text.TextWatcher
 import android.view.View
+import android.widget.EditText
 import androidx.databinding.BindingAdapter
 import ylc.love.wxj.com.widget.AppTitle
 
@@ -13,4 +15,11 @@ import ylc.love.wxj.com.widget.AppTitle
 @BindingAdapter("titleBack")
 fun setAppTitleBackClick(titleBar: AppTitle, listener: View.OnClickListener?) {
     titleBar.setClickBackListener(listener)
+}
+
+@BindingAdapter("addTextChangeListener")
+fun addTextChangeListener(et: EditText, watcher: TextWatcher?) {
+    watcher?.let {
+        et.addTextChangedListener(it)
+    }
 }

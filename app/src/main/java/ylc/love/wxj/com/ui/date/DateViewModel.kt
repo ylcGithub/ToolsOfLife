@@ -14,7 +14,7 @@ class DateViewModel : BaseViewModel() {
 
     fun getAllDateBeans() = runOnThread(work = {
         val dateBeanDao = AppDataBase.instance.eventBeanDao()
-        val list = dateBeanDao.selectAllByType(1)
+        val list = dateBeanDao.selectAll()
         val count= list.size
         repeat(count) {
             list[it].needDay = DateUtils.getNeed(list[it].date)

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <ylc.love.wxj.com.widget.AppTextView
         android:id="@+id/tv_title"
         style="@style/app_title_title_view_style" />
 

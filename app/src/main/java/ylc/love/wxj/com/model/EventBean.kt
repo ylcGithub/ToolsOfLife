@@ -13,9 +13,6 @@ import androidx.room.PrimaryKey
 data class EventBean(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    //事件类型
-    @ColumnInfo
-    val type: Int,
     @ColumnInfo
     var title: String?,
     @ColumnInfo
@@ -24,12 +21,6 @@ data class EventBean(
     var date: Long,
     @ColumnInfo
     var createDate: Long,
-    //账单类型
-    @ColumnInfo
-    var billType: String? = null,
-    //账单金额
-    @ColumnInfo
-    var amount: Float? = null,
 
     //还需要多久到这个纪念日
     var needDay: Int = 0,

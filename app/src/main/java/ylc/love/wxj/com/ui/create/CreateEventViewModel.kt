@@ -1,11 +1,12 @@
 package ylc.love.wxj.com.ui.create
 
+import android.text.Editable
 import androidx.lifecycle.MutableLiveData
 import ylc.love.wxj.com.base.BaseViewModel
+import ylc.love.wxj.com.common.SimpleTextWatcher
 import ylc.love.wxj.com.expand.toast
 import ylc.love.wxj.com.model.AppDataBase
 import ylc.love.wxj.com.model.EventBean
-import ylc.love.wxj.com.utils.EventTypeUtil
 import ylc.love.wxj.com.utils.LogUtil
 
 /**
@@ -15,12 +16,21 @@ import ylc.love.wxj.com.utils.LogUtil
  */
 class CreateEventViewModel : BaseViewModel() {
     val eventTitle: MutableLiveData<String> = MutableLiveData()
-    private val eventType: MutableLiveData<Int> = MutableLiveData(1)
-    val isBillType: MutableLiveData<Boolean> = MutableLiveData(false)
-    val billType: MutableLiveData<Int> = MutableLiveData()
     val eventDate: MutableLiveData<Long> = MutableLiveData()
     val eventDes: MutableLiveData<String> = MutableLiveData()
     val saveState: MutableLiveData<Boolean> = MutableLiveData()
+
+    val desWatcher = object : SimpleTextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                eventDes.postValue(s.toString())
+            }
+    }
+
+    val titleWatcher = object :SimpleTextWatcher{
+        override fun afterTextChanged(s: Editable?) {
+            eventTitle.postValue(s.toString())
+        }
+    }
 
     fun saveEvent() {
         if (eventTitle.value == null) {
@@ -40,7 +50,6 @@ class CreateEventViewModel : BaseViewModel() {
         val currMill = System.currentTimeMillis()
         val bean = EventBean(
             currMill,
-            eventType.value ?: 1,
             eventTitle.value,
             eventDes.value,
             eventDate.value ?: currMill,
@@ -49,9 +58,4 @@ class CreateEventViewModel : BaseViewModel() {
         val insert = eventBeanDao.insert(bean)
         saveState.postValue(insert > 0)
     }, catch = { e -> LogUtil.log(e.message.toString()) })
-
-    fun setEventType(type: Int) {
-        eventType.postValue(type)
-        isBillType.postValue(type == 2)
-    }
 }

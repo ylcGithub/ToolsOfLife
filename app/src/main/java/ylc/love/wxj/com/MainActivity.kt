@@ -8,7 +8,6 @@ import ylc.love.wxj.com.base.BaseActivity
 import ylc.love.wxj.com.model.AppDataBase
 import ylc.love.wxj.com.model.BillTypeBean
 import ylc.love.wxj.com.model.EventTypeBean
-import ylc.love.wxj.com.ui.create.CreateEventActivity
 
 class MainActivity : BaseActivity() {
 
@@ -23,9 +22,6 @@ class MainActivity : BaseActivity() {
     override fun initData() {
         initBillTypeBean()
         initEventTypeBean()
-        create.setOnClickListener {
-            toNextActivity(CreateEventActivity::class.java)
-        }
     }
 
     /**

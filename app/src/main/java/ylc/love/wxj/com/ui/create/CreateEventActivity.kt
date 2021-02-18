@@ -2,20 +2,14 @@ package ylc.love.wxj.com.ui.create
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.graphics.Color
 import android.os.Build
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.annotation.RequiresApi
 import kotlinx.android.synthetic.main.activity_create_event.*
 import ylc.love.wxj.com.R
 import ylc.love.wxj.com.base.BaseMvvmActivity
 import ylc.love.wxj.com.databinding.ActivityCreateEventBinding
 import ylc.love.wxj.com.expand.toast
-import ylc.love.wxj.com.model.AppDataBase
-import ylc.love.wxj.com.model.SelectTypeBean
 import ylc.love.wxj.com.utils.DateUtils
-import ylc.love.wxj.com.widget.SelectTypePopWindow
 import java.util.*
 
 /**
@@ -31,21 +25,6 @@ class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreat
     override fun initData() {
         mBinding.click = ClickProxy()
         mBinding.vm = mViewModel
-        initWindow()
-        et_title.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                mViewModel.eventTitle.postValue(s.toString())
-            }
-
-        })
         val time = DateUtils.getCurDateStr("yyyy-MM-dd")
         tv_event_time.text = time
         mViewModel.eventDate.postValue(DateUtils.getDateFromStr(time, "yyyy-MM-dd"))
@@ -58,73 +37,12 @@ class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreat
                 "保存失败".toast()
             }
         })
-
-        iniEventType()
     }
-
-    //初始化事件类型数据源
-    private fun iniEventType() {
-        val array: Array<String> = resources.getStringArray(R.array.event_type_array)
-        eventTypeList = List(array.size) {
-            SelectTypeBean(it + 1, array[it])
-        }
-        tv_event_type.text = array[0]
-        mViewModel.setEventType(1)
-    }
-
-    var typeListWindow: SelectTypePopWindow? = null
-    private fun initWindow() {
-        typeListWindow = SelectTypePopWindow(this)
-        typeListWindow?.setBackgroundColor(Color.TRANSPARENT)
-    }
-
-    var eventTypeList: List<SelectTypeBean>? = null
-    var billTypeList: List<SelectTypeBean>? = null
-
 
     inner class ClickProxy {
 
         fun back() {
             finishActivity()
-        }
-
-        fun clickEventType() {
-            //设置监听
-            typeListWindow?.listener = object : SelectTypePopWindow.CustomClickListener {
-                override fun onClick(id: Int, type: String) {
-                    mViewModel.setEventType(id)
-                    tv_event_type.text = type
-                    if(id == 2){
-                        initBillTypeList()
-                    }
-                }
-            }
-            typeListWindow?.list = eventTypeList
-            typeListWindow?.showPopupWindow(tv_event_type)
-        }
-
-        fun clickBillType() {
-            //设置监听
-            typeListWindow?.listener = object : SelectTypePopWindow.CustomClickListener {
-                override fun onClick(id: Int, type: String) {
-                    mViewModel.billType.postValue(id)
-                    tv_bill_type.text = type
-                }
-            }
-            typeListWindow?.list = billTypeList
-            typeListWindow?.showPopupWindow(tv_bill_type)
-        }
-
-        fun initBillTypeList(){
-            //初始化数据源
-            val billTypeBeanDao = AppDataBase.instance.billTypeBeanDao()
-            val list = billTypeBeanDao.selectAll()
-            val count = list.size
-            billTypeList = List(count) {
-                SelectTypeBean(list[it].id, list[it].type)
-            }
-            tv_bill_type.text = list[0].type
-            mViewModel.billType.postValue(list[0].id)
         }
 
         @SuppressLint("SetTextI18n")

@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
 import ylc.love.wxj.com.R
+import ylc.love.wxj.com.utils.FontCustom
 
 /**
  * @author YLC-D
@@ -55,5 +56,7 @@ open class AppTextView @JvmOverloads constructor(
             selectedColor = ColorStateList.valueOf(selectColor)
             pressedColor = selectedColor
         }
+        //设置字体样式
+        typeface = FontCustom.setFont(context)
     }
 }

@@ -27,12 +27,12 @@
                 android:orientation="horizontal"
                 tools:ignore="UselessParent">
 
-                <TextView
+                <ylc.love.wxj.com.widget.AppTextView
                     android:id="@+id/tv_title"
                     style="@style/date_list_item_tv_title"
                     tools:text="第一次牵手的水立方的的" />
 
-                <TextView
+                <ylc.love.wxj.com.widget.AppTextView
                     android:id="@+id/tv_title_date"
                     style="@style/date_list_item_tv_des"
                     tools:ignore="RtlSymmetry"
@@ -55,11 +55,11 @@
                     android:orientation="horizontal"
                     tools:ignore="UselessParent">
 
-                    <TextView
+                    <ylc.love.wxj.com.widget.AppTextView
                         style="@style/date_list_item_tv_title"
                         android:text="@string/need_time_colon" />
 
-                    <TextView
+                    <ylc.love.wxj.com.widget.AppTextView
                         android:id="@+id/tv_need_time"
                         style="@style/date_list_item_tv_des"
                         android:textColor="@color/color_red"
@@ -76,11 +76,11 @@
                     android:orientation="horizontal"
                     tools:ignore="UselessParent">
 
-                    <TextView
+                    <ylc.love.wxj.com.widget.AppTextView
                         style="@style/date_list_item_tv_title"
                         android:text="@string/has_gone_colon" />
 
-                    <TextView
+                    <ylc.love.wxj.com.widget.AppTextView
                         android:id="@+id/tv_gone"
                         style="@style/date_list_item_tv_des"
                         android:textColor="@color/teal_700"
@@ -96,11 +96,11 @@
                 android:orientation="horizontal"
                 tools:ignore="UselessParent">
 
-                <TextView
+                <ylc.love.wxj.com.widget.AppTextView
                     style="@style/date_list_item_tv_title"
                     android:text="@string/des_colon" />
 
-                <TextView
+                <ylc.love.wxj.com.widget.AppTextView
                     android:id="@+id/tv_des"
                     style="@style/date_list_item_tv_des"
                     android:textColor="@color/teal_700"

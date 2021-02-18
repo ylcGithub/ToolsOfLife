@@ -37,7 +37,7 @@
             android:paddingEnd="@dimen/widget_size_15"
             tools:ignore="UselessParent">
 
-            <TextView
+            <ylc.love.wxj.com.widget.AppTextView
                 android:id="@+id/tv_title_key"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 android:gravity="center|end"
                 android:hint="@string/input_title"
                 android:inputType="text"
-                android:text="@{vm.eventTitle}"
+                addTextChangeListener="@{vm.titleWatcher}"
                 android:textColor="@color/color_666"
                 android:textColorHint="@color/color_aaa"
                 android:textSize="@dimen/font_size_16"
@@ -74,88 +74,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/widget_size_55"
-            android:orientation="horizontal"
             android:paddingStart="@dimen/widget_size_15"
             android:paddingEnd="@dimen/widget_size_15">
 
-            <TextView
-                android:id="@+id/tv_event_type_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="@string/event_type"
-                android:textColor="@color/color_666"
-                android:textSize="@dimen/font_size_16" />
-
-            <ylc.love.wxj.com.widget.DrawableTextView
-                android:id="@+id/tv_event_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:onClick="@{()->click.clickEventType()}"
-                android:textColor="@color/color_999"
-                android:textSize="@dimen/font_size_16"
-                app:drawableHeight="@dimen/widget_size_15"
-                app:drawableRight="@drawable/icon_arrow_down"
-                app:drawableWidth="@dimen/widget_size_15"
-                tools:ignore="RelativeOverlap"
-                tools:text="日期事件" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/widget_min_size_1"
-                android:layout_alignParentBottom="true"
-                android:background="@color/line_color" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/rl_bill_type"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/widget_size_55"
-            android:paddingStart="@dimen/widget_size_15"
-            android:paddingEnd="@dimen/widget_size_15"
-            android:visibility="@{vm.isBillType()?view.VISIBLE:view.GONE}">
-
-            <TextView
-                android:id="@+id/tv_bill_type_key"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="@string/bill_type"
-                android:textColor="@color/color_666"
-                android:textSize="@dimen/font_size_16" />
-
-            <ylc.love.wxj.com.widget.DrawableTextView
-                android:id="@+id/tv_bill_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:onClick="@{()->click.clickBillType()}"
-                android:textColor="@color/color_999"
-                android:textSize="@dimen/font_size_16"
-                app:drawableHeight="@dimen/widget_size_15"
-                app:drawableRight="@drawable/icon_arrow_down"
-                app:drawableWidth="@dimen/widget_size_15"
-                tools:ignore="RelativeOverlap"
-                tools:text="账单类型" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/widget_min_size_1"
-                android:layout_alignParentBottom="true"
-                android:background="@color/line_color" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/widget_size_55"
-            android:paddingStart="@dimen/widget_size_15"
-            android:paddingEnd="@dimen/widget_size_15">
-
-            <TextView
+            <ylc.love.wxj.com.widget.AppTextView
                 android:id="@+id/tv_event_time_key"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -186,7 +108,7 @@
                 android:background="@color/line_color" />
         </RelativeLayout>
 
-        <TextView
+        <ylc.love.wxj.com.widget.AppTextView
             android:id="@+id/tv_des_key"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -200,20 +122,20 @@
             android:id="@+id/et_des"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_marginStart="@dimen/widget_size_15"
             android:layout_marginTop="@dimen/widget_size_15"
             android:layout_marginEnd="@dimen/widget_size_15"
-            android:layout_marginBottom="@dimen/widget_size_15"
-            android:layout_weight="1"
+            android:layout_marginBottom="@dimen/widget_size_35"
             android:background="@null"
             android:gravity="start"
             android:hint="@string/input_event_detail"
-            android:inputType="text"
-            android:text="@{vm.eventDes}"
+            android:inputType="textMultiLine"
+            addTextChangeListener="@{vm.desWatcher}"
             android:textColor="@color/color_666"
             android:textColorHint="@color/color_aaa"
             android:textSize="@dimen/font_size_16"
-            tools:ignore="Autofill,LabelFor" />
+            tools:ignore="Autofill" />
 
         <Button
             android:id="@+id/btn_save"

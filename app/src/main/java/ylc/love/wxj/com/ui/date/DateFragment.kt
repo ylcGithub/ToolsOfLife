@@ -14,6 +14,7 @@ import ylc.love.wxj.com.databinding.DateListItemBinding
 import ylc.love.wxj.com.databinding.FragmentDateBinding
 import ylc.love.wxj.com.model.AppDataBase
 import ylc.love.wxj.com.model.EventBean
+import ylc.love.wxj.com.ui.create.CreateEventActivity
 import ylc.love.wxj.com.utils.DateUtils
 import ylc.love.wxj.com.utils.ResUtil
 import ylc.love.wxj.com.widget.CustomItemDecoration
@@ -39,6 +40,9 @@ class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
         mViewModel.dateList.observe(this, {
             listAdapter.updateList(it, true)
         })
+        create.setOnClickListener {
+            toNextActivity(CreateEventActivity::class.java)
+        }
     }
 
 
