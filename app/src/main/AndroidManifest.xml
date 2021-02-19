@@ -47,7 +47,7 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".ui.create.CreateEventActivity"
+            android:name=".ui.create.date.CreateDateActivity"
             android:label="@string/create_event" />
     </application>
 

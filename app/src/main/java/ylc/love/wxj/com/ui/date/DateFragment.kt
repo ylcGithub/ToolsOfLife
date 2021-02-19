@@ -13,8 +13,8 @@ import ylc.love.wxj.com.base.BaseViewHolder
 import ylc.love.wxj.com.databinding.DateListItemBinding
 import ylc.love.wxj.com.databinding.FragmentDateBinding
 import ylc.love.wxj.com.model.AppDataBase
-import ylc.love.wxj.com.model.EventBean
-import ylc.love.wxj.com.ui.create.CreateEventActivity
+import ylc.love.wxj.com.model.DateBean
+import ylc.love.wxj.com.ui.create.date.CreateDateActivity
 import ylc.love.wxj.com.utils.DateUtils
 import ylc.love.wxj.com.utils.ResUtil
 import ylc.love.wxj.com.widget.CustomItemDecoration
@@ -41,21 +41,21 @@ class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
             listAdapter.updateList(it, true)
         })
         create.setOnClickListener {
-            toNextActivity(CreateEventActivity::class.java)
+            toNextActivity(CreateDateActivity::class.java)
         }
     }
 
 
     private val listAdapter =
-        object : BaseOneLayoutAdapter<EventBean, DateListItemBinding>(R.layout.date_list_item) {
-            override fun itemIsSame(oldItem: EventBean, newItem: EventBean): Boolean =
+        object : BaseOneLayoutAdapter<DateBean, DateListItemBinding>(R.layout.date_list_item) {
+            override fun itemIsSame(oldItem: DateBean, newItem: DateBean): Boolean =
                 oldItem.id == newItem.id
 
             @SuppressLint("SetTextI18n")
             @RequiresApi(Build.VERSION_CODES.Q)
             override fun onBindItem(
                 bind: DateListItemBinding,
-                item: EventBean,
+                item: DateBean,
                 holder: BaseViewHolder
             ) {
                 bind.tvTitle.text = item.title
@@ -80,7 +80,7 @@ class DateFragment : BaseFragment<DateViewModel, FragmentDateBinding>() {
             }
         }
 
-    private fun showDeleteWindow(item:EventBean) {
+    private fun showDeleteWindow(item:DateBean) {
         val eventBeanDao = AppDataBase.instance.eventBeanDao()
         eventBeanDao.delete(item)
     }

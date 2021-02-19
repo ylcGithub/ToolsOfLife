@@ -11,7 +11,7 @@ import ylc.love.wxj.com.base.BaseOneLayoutAdapter
 import ylc.love.wxj.com.base.BaseViewHolder
 import ylc.love.wxj.com.databinding.BillListItemBinding
 import ylc.love.wxj.com.databinding.FragmentBillBinding
-import ylc.love.wxj.com.model.EventBean
+import ylc.love.wxj.com.model.DateBean
 import ylc.love.wxj.com.utils.DateUtils
 import java.util.*
 
@@ -46,12 +46,12 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
         dialog.show()
     }
 
-    private val mAdapter = object :BaseOneLayoutAdapter<EventBean,BillListItemBinding>(R.layout.bill_list_item){
-        override fun itemIsSame(oldItem: EventBean, newItem: EventBean): Boolean = oldItem == newItem
+    private val mAdapter = object :BaseOneLayoutAdapter<DateBean,BillListItemBinding>(R.layout.bill_list_item){
+        override fun itemIsSame(oldItem: DateBean, newItem: DateBean): Boolean = oldItem == newItem
 
         override fun onBindItem(
             bind: BillListItemBinding,
-            item: EventBean,
+            item: DateBean,
             holder: BaseViewHolder) {
         }
 

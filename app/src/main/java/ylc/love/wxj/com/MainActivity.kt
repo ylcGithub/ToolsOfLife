@@ -7,7 +7,6 @@ import kotlinx.android.synthetic.main.activity_main_layout.*
 import ylc.love.wxj.com.base.BaseActivity
 import ylc.love.wxj.com.model.AppDataBase
 import ylc.love.wxj.com.model.BillTypeBean
-import ylc.love.wxj.com.model.EventTypeBean
 
 class MainActivity : BaseActivity() {
 

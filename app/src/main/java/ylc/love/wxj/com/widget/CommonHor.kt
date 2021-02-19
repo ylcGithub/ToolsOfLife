@@ -2,7 +2,6 @@ package ylc.love.wxj.com.widget
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.base_common_hor_widget.view.*
 import ylc.love.wxj.com.R
@@ -23,7 +22,15 @@ class CommonHor @JvmOverloads constructor(context: Context,attrs:AttributeSet? =
         tv_content.text = content
     }
 
-    fun setContentClickListener(listener: View.OnClickListener){
+    fun setContentClickListener(listener: OnClickListener){
         tv_content.setOnClickListener(listener)
+    }
+    fun setContent(content:String){
+        tv_content.text = if(content.isEmpty()) "没有自定义字体" else content
+    }
+
+    fun notifyTypeFace(){
+        tv_title.notifyTypeFace()
+        tv_content.notifyTypeFace()
     }
 }

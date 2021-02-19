@@ -7,13 +7,22 @@
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ylc.love.wxj.com.widget.CommonHor
-            app:hor_title="自定义字体"
-            app:hor_content="空"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ylc.love.wxj.com.widget.AppTitle
+            android:id="@+id/app_title"
+            app:no_back_icon="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:title="@string/setting" />
+
+        <ylc.love.wxj.com.widget.CommonHor
+            android:id="@+id/hor_font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hor_content="空"
+            app:hor_title="自定义字体" />
     </LinearLayout>
 </layout>

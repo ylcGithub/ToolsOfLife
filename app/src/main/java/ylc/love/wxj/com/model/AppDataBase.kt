@@ -6,7 +6,6 @@ import androidx.room.RoomDatabase
 import ylc.love.wxj.com.base.LifeApplication
 import ylc.love.wxj.com.model.dao.BillTypeBeanDao
 import ylc.love.wxj.com.model.dao.EventBeanDao
-import ylc.love.wxj.com.model.dao.EventTypeBeanDao
 
 /**
  * @author Administrator
@@ -14,7 +13,7 @@ import ylc.love.wxj.com.model.dao.EventTypeBeanDao
  * 说明: 数据声明
  */
 @Database(
-    entities = [EventBean::class, EventTypeBean::class, BillTypeBean::class],
+    entities = [DateBean::class, EventTypeBean::class, BillTypeBean::class],
     version = 1,
     exportSchema = false
 )

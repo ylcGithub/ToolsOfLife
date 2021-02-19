@@ -9,7 +9,6 @@
         android:orientation="vertical"
         android:layout_width="@dimen/widget_size_150"
         android:layout_marginEnd="@dimen/widget_size_15"
-        android:background="@color/white"
         android:layout_height="wrap_content">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_type_list"

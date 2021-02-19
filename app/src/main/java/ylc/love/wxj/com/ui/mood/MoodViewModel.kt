@@ -3,7 +3,7 @@ package ylc.love.wxj.com.ui.mood
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ylc.love.wxj.com.base.BaseViewModel
-import ylc.love.wxj.com.model.EventBean
+import ylc.love.wxj.com.model.DateBean
 
 class MoodViewModel : BaseViewModel() {
 
@@ -13,8 +13,8 @@ class MoodViewModel : BaseViewModel() {
     val text: LiveData<String> = _text
 
 
-    private val _dataList = MutableLiveData<List<EventBean>>()
-    val dateList: LiveData<List<EventBean>> = _dataList
+    private val _dataList = MutableLiveData<List<DateBean>>()
+    val dateList: LiveData<List<DateBean>> = _dataList
 
 
     fun getAllMoodBeans() = runOnThread(work = {

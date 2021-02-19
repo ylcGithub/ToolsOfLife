@@ -179,4 +179,8 @@ class AppTitle @JvmOverloads constructor(
             StatusBarUtil.setColorNoTranslucent(context as Activity?, titleBackgroundColor)
         }
     }
+
+    fun notifyTypeFace(){
+       tv_title.notifyTypeFace()
+    }
 }

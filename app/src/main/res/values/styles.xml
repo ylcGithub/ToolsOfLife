@@ -30,7 +30,6 @@
     <style name="date_list_item_tv_title">
         <item name="android:textSize">@dimen/font_size_18</item>
         <item name="android:textColor">@color/color_333</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:lines">1</item>

@@ -2,7 +2,7 @@ package ylc.love.wxj.com.model.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import ylc.love.wxj.com.model.EventBean
+import ylc.love.wxj.com.model.DateBean
 
 /**
  * @author YLC-D
@@ -10,14 +10,14 @@ import ylc.love.wxj.com.model.EventBean
  * 说明:
  */
 @Dao
-interface EventBeanDao : BaseDao<EventBean> {
+interface EventBeanDao : BaseDao<DateBean> {
     /**
      * 根据用户id查找用户信息
      * @param id id
      */
-    @Query("select * from EventBean where id = :id")
-    fun selectById(id: Long): EventBean?
+    @Query("select * from DateBean where id = :id")
+    fun selectById(id: Long): DateBean?
 
-    @Query("select * from EventBean")
-    fun selectAll(): List<EventBean>
+    @Query("select * from DateBean")
+    fun selectAll(): List<DateBean>
 }

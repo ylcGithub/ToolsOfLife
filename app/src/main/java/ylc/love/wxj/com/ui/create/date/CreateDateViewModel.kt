@@ -1,4 +1,4 @@
-package ylc.love.wxj.com.ui.create
+package ylc.love.wxj.com.ui.create.date
 
 import android.text.Editable
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import ylc.love.wxj.com.base.BaseViewModel
 import ylc.love.wxj.com.common.SimpleTextWatcher
 import ylc.love.wxj.com.expand.toast
 import ylc.love.wxj.com.model.AppDataBase
-import ylc.love.wxj.com.model.EventBean
+import ylc.love.wxj.com.model.DateBean
 import ylc.love.wxj.com.utils.LogUtil
 
 /**
@@ -14,7 +14,7 @@ import ylc.love.wxj.com.utils.LogUtil
  *@create on 2021/1/28 10
  *说明:
  */
-class CreateEventViewModel : BaseViewModel() {
+class CreateDateViewModel : BaseViewModel() {
     val eventTitle: MutableLiveData<String> = MutableLiveData()
     val eventDate: MutableLiveData<Long> = MutableLiveData()
     val eventDes: MutableLiveData<String> = MutableLiveData()
@@ -48,7 +48,7 @@ class CreateEventViewModel : BaseViewModel() {
     private fun insertBean() = runOnThread(work = {
         val eventBeanDao = AppDataBase.instance.eventBeanDao()
         val currMill = System.currentTimeMillis()
-        val bean = EventBean(
+        val bean = DateBean(
             currMill,
             eventTitle.value,
             eventDes.value,

@@ -3,12 +3,12 @@ package ylc.love.wxj.com.ui.bill
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ylc.love.wxj.com.base.BaseViewModel
-import ylc.love.wxj.com.model.EventBean
+import ylc.love.wxj.com.model.DateBean
 
 class BillViewModel : BaseViewModel() {
 
-    private val _dataList = MutableLiveData<List<EventBean>>()
-    val dateList: LiveData<List<EventBean>> = _dataList
+    private val _dataList = MutableLiveData<List<DateBean>>()
+    val dateList: LiveData<List<DateBean>> = _dataList
     val currTime:MutableLiveData<Long> = MutableLiveData(0L)
 
     fun queryBeans() = runOnThread(work = {

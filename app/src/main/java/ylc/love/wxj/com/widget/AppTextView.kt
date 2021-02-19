@@ -59,4 +59,8 @@ open class AppTextView @JvmOverloads constructor(
         //设置字体样式
         typeface = FontCustom.setFont(context)
     }
+
+    fun notifyTypeFace(){
+        typeface = FontCustom.setFont(context)
+    }
 }

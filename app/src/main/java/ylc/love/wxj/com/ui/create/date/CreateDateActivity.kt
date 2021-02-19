@@ -1,13 +1,13 @@
-package ylc.love.wxj.com.ui.create
+package ylc.love.wxj.com.ui.create.date
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Build
 import androidx.annotation.RequiresApi
-import kotlinx.android.synthetic.main.activity_create_event.*
+import kotlinx.android.synthetic.main.activity_create_date.*
 import ylc.love.wxj.com.R
 import ylc.love.wxj.com.base.BaseMvvmActivity
-import ylc.love.wxj.com.databinding.ActivityCreateEventBinding
+import ylc.love.wxj.com.databinding.ActivityCreateDateBinding
 import ylc.love.wxj.com.expand.toast
 import ylc.love.wxj.com.utils.DateUtils
 import java.util.*
@@ -17,10 +17,10 @@ import java.util.*
  *@create on 2021/1/28 10
  *说明:
  */
-class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreateEventBinding>() {
-    override fun getLayoutId(): Int = R.layout.activity_create_event
-    override fun getViewModel(): CreateEventViewModel =
-        getViewModelProvider(this).get(CreateEventViewModel::class.java)
+class CreateDateActivity : BaseMvvmActivity<CreateDateViewModel, ActivityCreateDateBinding>() {
+    override fun getLayoutId(): Int = R.layout.activity_create_date
+    override fun getViewModel(): CreateDateViewModel =
+        getViewModelProvider(this).get(CreateDateViewModel::class.java)
 
     override fun initData() {
         mBinding.click = ClickProxy()
@@ -50,7 +50,7 @@ class CreateEventActivity : BaseMvvmActivity<CreateEventViewModel, ActivityCreat
         fun selectDate() {
             val calender = Calendar.getInstance()
             val dialog = DatePickerDialog(
-                this@CreateEventActivity,
+                this@CreateDateActivity,
                 { _, year, month, dayOfMonth ->
                     val time = "$year-${month + 1}-$dayOfMonth"
                     tv_event_time.text = time

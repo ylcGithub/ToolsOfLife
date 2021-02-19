@@ -109,5 +109,4 @@ abstract class BaseFragment<VM : BaseViewModel, B : ViewDataBinding> : Fragment(
     abstract fun getLayoutId():Int
     abstract fun getViewModel():VM
     abstract fun initData()
-
 }

@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
  *说明:日期时间 数据表
  */
 @Entity
-data class EventBean(
+data class DateBean(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     @ColumnInfo

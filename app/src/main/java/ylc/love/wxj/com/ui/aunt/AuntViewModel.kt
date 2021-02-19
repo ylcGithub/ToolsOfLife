@@ -3,7 +3,7 @@ package ylc.love.wxj.com.ui.aunt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ylc.love.wxj.com.base.BaseViewModel
-import ylc.love.wxj.com.model.EventBean
+import ylc.love.wxj.com.model.DateBean
 
 /**
  *@author YLC-D
@@ -12,8 +12,8 @@ import ylc.love.wxj.com.model.EventBean
  */
 class AuntViewModel:BaseViewModel() {
 
-    private val _dataList = MutableLiveData<List<EventBean>>()
-    val dateList: LiveData<List<EventBean>> = _dataList
+    private val _dataList = MutableLiveData<List<DateBean>>()
+    val dateList: LiveData<List<DateBean>> = _dataList
 
 
     fun getAllAuntBeans() = runOnThread(work = {

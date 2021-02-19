@@ -7,11 +7,11 @@
 
         <variable
             name="click"
-            type="ylc.love.wxj.com.ui.create.CreateEventActivity.ClickProxy" />
+            type="ylc.love.wxj.com.ui.create.date.CreateDateActivity" />
 
         <variable
             name="vm"
-            type="ylc.love.wxj.com.ui.create.CreateEventViewModel" />
+            type="ylc.love.wxj.com.ui.create.date.CreateDateViewModel" />
 
         <variable
             name="view"
