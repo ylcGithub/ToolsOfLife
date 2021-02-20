@@ -82,11 +82,4 @@
         <item>零食</item>
         <item>其他</item>
     </string-array>
-
-    <string-array name="event_type_array">
-        <item>日期提醒</item>
-        <item>开销账单</item>
-        <item>心情记录</item>
-        <item>姨妈日期</item>
-    </string-array>
 </resources>

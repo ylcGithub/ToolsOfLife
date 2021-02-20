@@ -20,23 +20,7 @@ class MainActivity : BaseActivity() {
 
     override fun initData() {
         initBillTypeBean()
-        initEventTypeBean()
     }
-
-    /**
-     * 初始化事件类型数据
-     */
-    private fun initEventTypeBean() = runOnThread(work = {
-        val eventTypeBeanDao = AppDataBase.instance.eventTypeBeanDao()
-        val selectAll = eventTypeBeanDao.selectAll()
-        if (selectAll.isEmpty()) {
-            val array: Array<String> = resources.getStringArray(R.array.event_type_array)
-            repeat(array.count()) {
-                val bean = EventTypeBean(it + 1, array[it])
-                eventTypeBeanDao.insert(bean)
-            }
-        }
-    })
 
     /**
      * 初始化账单类型数据

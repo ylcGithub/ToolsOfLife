@@ -19,11 +19,6 @@
             android:layout_height="wrap_content"
             app:no_back_icon="true"
             app:title="@string/essay_mood" />
-
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/rcv_mood"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent" />-->
         <View
             android:id="@+id/btn"
             android:layout_width="@dimen/widget_size_120"

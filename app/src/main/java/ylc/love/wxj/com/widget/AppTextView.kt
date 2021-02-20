@@ -56,8 +56,10 @@ open class AppTextView @JvmOverloads constructor(
             selectedColor = ColorStateList.valueOf(selectColor)
             pressedColor = selectedColor
         }
-        //设置字体样式
-        typeface = FontCustom.setFont(context)
+        //不是预览页面情况下，设置字体样式
+       if(!isInEditMode){
+           typeface = FontCustom.setFont(context)
+       }
     }
 
     fun notifyTypeFace(){

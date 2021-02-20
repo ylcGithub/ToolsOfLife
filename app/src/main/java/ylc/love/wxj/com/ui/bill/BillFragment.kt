@@ -3,7 +3,6 @@ package ylc.love.wxj.com.ui.bill
 import android.app.DatePickerDialog
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_create_event.*
 import kotlinx.android.synthetic.main.fragment_bill.*
 import ylc.love.wxj.com.R
 import ylc.love.wxj.com.base.BaseFragment
@@ -36,8 +35,8 @@ class BillFragment : BaseFragment<BillViewModel,FragmentBillBinding>() {
             mContext,
             { _, year, month, dayOfMonth ->
                 val time = "$year-${month + 1}-$dayOfMonth"
-                tv_event_time.text = time
-                mViewModel.currTime.postValue(DateUtils.getDateFromStr(time, "yyyy-MM"))
+//                tv_event_time.text = time
+//                mViewModel.currTime.postValue(DateUtils.getDateFromStr(time, "yyyy-MM"))
             },
             calender.get(Calendar.YEAR),
             calender.get(Calendar.MONTH),

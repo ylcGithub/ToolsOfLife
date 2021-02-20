@@ -7,7 +7,7 @@
 
         <variable
             name="click"
-            type="ylc.love.wxj.com.ui.create.date.CreateDateActivity" />
+            type="ylc.love.wxj.com.ui.create.date.CreateDateActivity.ClickProxy" />
 
         <variable
             name="vm"

@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
-import androidx.appcompat.widget.AppCompatTextView
 import com.jaeger.library.StatusBarUtil
 import kotlinx.android.synthetic.main.base_app_title_no_right.view.*
 import ylc.love.wxj.com.R
@@ -69,13 +68,14 @@ class AppTitle @JvmOverloads constructor(
         statusIsLightMode = typedArray.getBoolean(R.styleable.AppTitle_status_is_light_mode,true)
         typedArray.recycle()
         rl_box.setBackgroundColor(titleBackgroundColor)
+        val tvTitle = findViewById<AppTextView>(R.id.tv_title)
         if (noTitle) {
-            tv_title.visibility = GONE
+            tvTitle.visibility = GONE
             iv_back.visibility = GONE
         } else {
-            tv_title.text = title
-            tv_title.setTextColor(titleColor)
-            tv_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize)
+            tvTitle.text = title
+            tvTitle.setTextColor(titleColor)
+            tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize)
             if (noBackIcon) {
                 iv_back.visibility = GONE
             } else {
@@ -125,7 +125,7 @@ class AppTitle @JvmOverloads constructor(
             DefaultPageType.NETWORK_ERROR -> {
                 defaultPage.visibility = VISIBLE
                 val ivHint = defaultPage.findViewById<AppImageView>(R.id.default_page_hint_icon)
-                val tvHint = defaultPage.findViewById<AppCompatTextView>(R.id.default_page_tv_hint)
+                val tvHint = defaultPage.findViewById<AppTextView>(R.id.default_page_tv_hint)
                 ivHint.setImageResource(R.drawable.vector_drawable_network_difference)
                 tvHint.setText(R.string.the_current_network_does_not_give_force_please_click_page_refresh)
                 ivHint.setOnClickListener(action)
@@ -135,7 +135,7 @@ class AppTitle @JvmOverloads constructor(
             DefaultPageType.PAGE_EMPTY -> {
                 defaultPage.visibility = VISIBLE
                 val ivHint = defaultPage.findViewById<AppImageView>(R.id.default_page_hint_icon)
-                val tvHint = defaultPage.findViewById<AppCompatTextView>(R.id.default_page_tv_hint)
+                val tvHint = defaultPage.findViewById<AppTextView>(R.id.default_page_tv_hint)
                 ivHint.setImageResource(R.drawable.vector_drawable_page_empty)
                 tvHint.setText(R.string.it_is_empty)
             }

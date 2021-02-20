@@ -13,14 +13,13 @@ import ylc.love.wxj.com.model.dao.EventBeanDao
  * 说明: 数据声明
  */
 @Database(
-    entities = [DateBean::class, EventTypeBean::class, BillTypeBean::class],
+    entities = [DateBean::class,  BillTypeBean::class],
     version = 1,
     exportSchema = false
 )
 abstract class AppDataBase : RoomDatabase() {
 
     abstract fun eventBeanDao(): EventBeanDao
-    abstract fun eventTypeBeanDao(): EventTypeBeanDao
     abstract fun billTypeBeanDao(): BillTypeBeanDao
 
     companion object {
