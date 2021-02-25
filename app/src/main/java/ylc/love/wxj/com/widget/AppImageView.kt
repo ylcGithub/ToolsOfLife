@@ -99,8 +99,7 @@ class AppImageView @JvmOverloads constructor(
             val widthMode = MeasureSpec.getMode(widthMeasureSpec)
             val width = MeasureSpec.getSize(widthMeasureSpec)
             // 根据宽度值和 宽高比例值 确定高度
-            val hMeasureSpec: Int
-            hMeasureSpec = if (isCircle) {
+            val hMeasureSpec: Int = if (isCircle) {
                 //如果是圆形宽高相同
                 MeasureSpec.makeMeasureSpec(width, widthMode)
             } else {

@@ -2,7 +2,10 @@ package ylc.love.wxj.com.widget
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.Gravity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.ContextCompat
+import ylc.love.wxj.com.R
 import ylc.love.wxj.com.utils.FontCustom
 
 /**
@@ -17,6 +20,9 @@ class AppButton @JvmOverloads constructor(
 ) : AppCompatButton(context, attrs, defStyle) {
 
     init {
+        background = ContextCompat.getDrawable(context, R.drawable.app_button_selector)
+        gravity = Gravity.CENTER
+        setTextColor(ContextCompat.getColor(context,R.color.white))
         //不是预览页面情况下，设置字体样式
         if (!isInEditMode) {
             typeface = FontCustom.setFont(context)

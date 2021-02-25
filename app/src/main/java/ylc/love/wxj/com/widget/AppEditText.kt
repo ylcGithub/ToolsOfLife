@@ -19,6 +19,8 @@ class AppEditText @JvmOverloads constructor(
         //不是预览页面情况下，设置字体样式
         if (!isInEditMode) {
             typeface = FontCustom.setFont(context)
+            //避免自定义editText无法获取焦点
+            isFocusableInTouchMode = true
         }
     }
 

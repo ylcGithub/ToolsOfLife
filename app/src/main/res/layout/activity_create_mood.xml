@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="click"
+            type="ylc.love.wxj.com.ui.create.mood.CreateMoodActivity.ClickProxy" />
+        <variable
+            name="vm"
+            type="ylc.love.wxj.com.ui.create.mood.CreateMoodViewModel" />
     </data>
 
     <LinearLayout
@@ -13,6 +18,7 @@
         android:orientation="vertical">
 
         <ylc.love.wxj.com.widget.AppTitle
+            titleBack="@{()->click.back()}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:title="@string/create_mood_diary" />
@@ -25,17 +31,19 @@
             android:orientation="horizontal">
 
             <ylc.love.wxj.com.widget.AppTextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/widget_size_15"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:text="@string/title"
                 android:textColor="@color/color_666"
                 android:textSize="@dimen/font_size_16" />
 
             <ylc.love.wxj.com.widget.AppEditText
                 android:id="@+id/et_title"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:gravity="end|center_vertical"
@@ -45,6 +53,7 @@
                 android:textColor="@color/color_666"
                 android:textColorHint="@color/color_999"
                 android:textSize="@dimen/font_size_16"
+                addTextChangeListener="@{vm.titleWatcher}"
                 tools:ignore="Autofill,RtlSymmetry" />
         </LinearLayout>
 
@@ -57,7 +66,9 @@
             android:gravity="start"
             android:hint="@string/edit_mood"
             android:inputType="textMultiLine"
+            android:textSize="@dimen/font_size_18"
             android:padding="@dimen/widget_size_15"
+            addTextChangeListener="@{vm.contentWatcher}"
             android:textColor="@color/color_666"
             android:textColorHint="@color/color_999"
             tools:ignore="Autofill" />
@@ -70,18 +81,10 @@
         <ylc.love.wxj.com.widget.AppButton
             android:id="@+id/btn_save"
             android:layout_width="match_parent"
+            android:onClick="@{()->click.saveMood()}"
             android:layout_height="@dimen/widget_size_50"
             android:layout_margin="@dimen/widget_size_15"
-            android:text="@string/save"
-            android:backgroundTint="@color/teal_700"
-            android:backgroundTintMode="src_atop"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_size_18" />
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:backgroundTint="@color/teal_700"
-            android:backgroundTintMode="src_atop"
-            android:layout_margin="@dimen/widget_size_15"
-            android:layout_height="@dimen/widget_size_50"/>
+            android:textSize="@dimen/font_size_18"
+            android:text="@string/save"/>
     </LinearLayout>
 </layout>
