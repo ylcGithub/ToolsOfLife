@@ -34,14 +34,14 @@
             </intent-filter>
         </activity>
 
-<!--        <activity-->
-<!--            android:name=".ui.AnimActivity">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+        <!--        <activity-->
+        <!--            android:name=".ui.AnimActivity">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
+        <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
 
         <activity
             android:name=".MainActivity"
@@ -49,8 +49,10 @@
         <activity
             android:name=".ui.create.date.CreateDateActivity"
             android:label="@string/create_event" />
-        <activity android:name=".ui.create.mood.CreateMoodActivity"
-            android:label="@string/create_mood_diary"/>
+        <activity
+            android:name=".ui.create.mood.CreateMoodActivity"
+            android:label="@string/create_mood_diary" />
+        <activity android:name=".ui.game.SmallGameActivity" />
     </application>
 
 </manifest>

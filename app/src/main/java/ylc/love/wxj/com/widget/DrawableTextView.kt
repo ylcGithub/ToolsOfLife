@@ -84,6 +84,11 @@ class DrawableTextView @JvmOverloads constructor(
         setDrawable()
     }
 
+    fun setRightDrawable(drawable: Drawable?) {
+        drawableRight = drawable
+        setDrawable()
+    }
+
     override fun drawableStateChanged() {
         super.drawableStateChanged()
         if (isPressed && haveDrawable && drawablePressFilter != null) {

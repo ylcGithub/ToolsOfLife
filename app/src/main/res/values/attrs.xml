@@ -69,6 +69,7 @@
     <declare-styleable name="CommonHor">
         <attr name="hor_title" format="string"/>
         <attr name="hor_content" format="string"/>
+        <attr name="hor_right_icon" format="reference"/>
     </declare-styleable>
 
     <string-array name="BillTypeString">

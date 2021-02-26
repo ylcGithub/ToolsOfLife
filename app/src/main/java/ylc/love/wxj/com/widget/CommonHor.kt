@@ -3,6 +3,7 @@ package ylc.love.wxj.com.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.RelativeLayout
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.base_common_hor_widget.view.*
 import ylc.love.wxj.com.R
 
@@ -17,9 +18,11 @@ class CommonHor @JvmOverloads constructor(context: Context,attrs:AttributeSet? =
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.CommonHor)
         val title = typedArray.getString(R.styleable.CommonHor_hor_title)
         val content = typedArray.getString(R.styleable.CommonHor_hor_content)
+        val rightIcon = typedArray.getResourceId(R.styleable.CommonHor_hor_right_icon,R.drawable.icon_arrow_down)
         typedArray.recycle()
         tv_title.text = title
         tv_content.text = content
+        tv_content.setRightDrawable(ContextCompat.getDrawable(context,rightIcon))
     }
 
     fun setContentClickListener(listener: OnClickListener){
