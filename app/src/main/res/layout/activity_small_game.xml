@@ -1,13 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <variable
+            name="click"
+            type="ylc.love.wxj.com.ui.game.SmallGameActivity.ClickProxy" />
+
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <ylc.love.wxj.com.widget.AppTitle
+            android:id="@+id/app_title"
+            titleBack="@{()->click.back()}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="2048" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/widget_size_15"
+            android:layout_marginBottom="@dimen/widget_size_15"
+            android:orientation="horizontal">
+
+            <ylc.love.wxj.com.widget.AppButton
+                android:id="@+id/btn_restart"
+                style="@style/game_btn_style"
+                android:text="@string/restart" />
+
+            <ylc.love.wxj.com.widget.AppButton
+                android:id="@+id/btn_restart1"
+                style="@style/game_btn_style"
+                android:text="@string/restart" />
+
+            <ylc.love.wxj.com.widget.AppButton
+                android:id="@+id/btn_restart2"
+                style="@style/game_btn_style"
+                android:text="@string/restart" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ylc.love.wxj.com.ui.game.GameViewBg
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+            <ylc.love.wxj.com.ui.game.GameView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+    </LinearLayout>
 </layout>

@@ -7,7 +7,7 @@
         <attr name="title_color" format="color" />
         <attr name="title_size" format="dimension" />
         <attr name="title_background" format="color" />
-        <attr name="status_is_light_mode" format="boolean"/>
+        <attr name="status_is_light_mode" format="boolean" />
         <!--回退位置的图标，标题栏的最左边-->
         <attr name="back_icon" format="reference" />
         <attr name="no_back_icon" format="boolean" />
@@ -41,6 +41,15 @@
     <declare-styleable name="AppTextView">
         <attr name="text_pressed_color" format="color" />
         <attr name="text_selected_color" format="color" />
+        <attr name="bg_radius" format="dimension"/>
+        <attr name="bg_left_top_radius" format="dimension" />
+        <attr name="bg_left_bottom_radius" format="dimension" />
+        <attr name="bg_right_top_radius" format="dimension" />
+        <attr name="bg_right_bottom_radius" format="dimension" />
+        <attr name="strokeColor" format="color" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="is_ripple_enable" format="boolean" />
+        <attr name="bg_color" format="color" />
     </declare-styleable>
     <!--    自定义的可以控制Drawable大小方向的TextView-->
     <declare-styleable name="DrawableTextView">
@@ -67,9 +76,9 @@
     </declare-styleable>
 
     <declare-styleable name="CommonHor">
-        <attr name="hor_title" format="string"/>
-        <attr name="hor_content" format="string"/>
-        <attr name="hor_right_icon" format="reference"/>
+        <attr name="hor_title" format="string" />
+        <attr name="hor_content" format="string" />
+        <attr name="hor_right_icon" format="reference" />
     </declare-styleable>
 
     <string-array name="BillTypeString">

@@ -1,5 +1,6 @@
 package ylc.love.wxj.com.ui.create.mood
 
+import kotlinx.android.synthetic.main.activity_create_mood.*
 import ylc.love.wxj.com.R
 import ylc.love.wxj.com.base.BaseMvvmActivity
 import ylc.love.wxj.com.databinding.ActivityCreateMoodBinding
@@ -27,6 +28,9 @@ class CreateMoodActivity : BaseMvvmActivity<CreateMoodViewModel, ActivityCreateM
                 "心情日记保存失败".toast()
             }
         })
+        tv_test.setOnClickListener {
+            "sdalfk".toast()
+        }
     }
 
     inner class ClickProxy {

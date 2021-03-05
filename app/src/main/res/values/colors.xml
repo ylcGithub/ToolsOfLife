@@ -21,4 +21,20 @@
     <color name="activity_normal_bg_color">#F4F6FA</color>
     <color name="pop_window_background_color">#77666666</color>
     <color name="line_color">#AAA</color>
+
+    <color name="game_background">#BFAE9C</color>
+    <color name="card_color_0">#CDC1B3</color>
+    <color name="card_color_2">#EEE4DA</color>
+    <color name="card_color_4">#ECDBBD</color>
+    <color name="card_color_8">#F2AF78</color>
+    <color name="card_color_16">#F6915B</color>
+    <color name="card_color_32">#F47555</color>
+    <color name="card_color_64">#F3512B</color>
+    <color name="card_color_128">#ECCD70</color>
+    <color name="card_color_256">#FFFFFF</color>
+    <color name="card_color_512">#FFFFFF</color>
+    <color name="card_color_1024">#FFFFFF</color>
+    <color name="card_color_2048">#FFFFFF</color>
+    <color name="card_color_4096">#FFFFFF</color>
+    <color name="card_color_8182">#FFFFFF</color>
 </resources>

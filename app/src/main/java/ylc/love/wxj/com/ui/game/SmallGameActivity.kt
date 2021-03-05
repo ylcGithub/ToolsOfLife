@@ -15,6 +15,18 @@ class SmallGameActivity :BaseMvvmActivity<SmallGameViewModel,ActivitySmallGameBi
     override fun getLayoutId(): Int = R.layout.activity_small_game
 
     override fun initData() {
+        mBinding.click = ClickProxy()
+
+    }
+
+    inner class ClickProxy{
+        fun back(){
+            finishActivity()
+        }
+
+        fun restart(){
+
+        }
 
     }
 }
