@@ -149,7 +149,7 @@ class AppTitle @JvmOverloads constructor(
         iv_back.setOnClickListener(listener)
     }
 
-    fun setRightOneTextBtnClickListener(listener: OnClickListener) {
+    fun setRightOneTextBtnClickListener(listener: OnClickListener?) {
         tv_right_one.setOnClickListener(listener)
     }
 

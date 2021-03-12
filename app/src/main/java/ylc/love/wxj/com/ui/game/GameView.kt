@@ -1,14 +1,17 @@
 package ylc.love.wxj.com.ui.game
 
-import android.animation.Animator
-import android.animation.AnimatorSet
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Point
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ViewGroup.LayoutParams
 import android.widget.GridLayout
-import ylc.love.wxj.com.utils.AnimUtil
+import com.orhanobut.hawk.Hawk
+import ylc.love.wxj.com.R
+import ylc.love.wxj.com.utils.LogUtil
+import ylc.love.wxj.com.utils.ResUtil
 import ylc.love.wxj.com.utils.ScreenUtil
 import kotlin.math.absoluteValue
 
@@ -23,21 +26,26 @@ class GameView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : GridLayout(context, attrs, defStyle) {
-
-    var startX: Float = 0f
-    var startY: Float = 0f
-    var offsetX: Float = 0f
-    var offsetY: Float = 0f
+    private var startX: Float = 0f
+    private var startY: Float = 0f
+    private var offsetX: Float = 0f
+    private var offsetY: Float = 0f
+    var viewModel: SmallGameViewModel? = null
 
     companion object {
-        private const val space: Int = 10
-        private val cardArray = Array(4) { arrayOfNulls<Card>(4) }
-        private val worthyArray = Array(4){ arrayOfNulls<Card>(4)}
+        const val LINES_KEY = "game_lines_key"
+        const val BEST_SCORE = "game_best_score"
+        const val MAX_SCORE = "game_max_score"
+        const val space: Int = 10
+        private var lines: Int = Hawk.get(LINES_KEY, 4)
+        private var cardArray = Array(lines) { arrayOfNulls<Card>(lines) }
+        private val emptyPoints = mutableListOf<Point>()
     }
 
     init {
-        columnCount = 4
-        setOnTouchListener { v, event ->
+        columnCount = lines
+        setBackgroundColor(ResUtil.getColor(context, R.color.game_background))
+        setOnTouchListener { _, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     startX = event.x
@@ -52,21 +60,21 @@ class GameView @JvmOverloads constructor(
             true
         }
         setPadding(space, space, space, space)
-        addCards((ScreenUtil.getScreenWidth() - 2 * space) / 4)
+        addCards((ScreenUtil.getScreenWidth() - 2 * space) / lines)
     }
 
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        randomCard()
-        randomCard()
+        addRandomCard()
+        addRandomCard()
     }
 
     private fun addCards(cardWidth: Int) {
         val lp = LayoutParams(cardWidth, cardWidth)
         var card: Card
-        for (x in 0..3) {
-            for (y in 0..3) {
+        for (y in 0 until lines) {
+            for (x in 0 until lines) {
                 card = Card(context, space, space, space, space)
                 card.num = 0
                 addView(card, lp)
@@ -89,91 +97,201 @@ class GameView @JvmOverloads constructor(
     }
 
     private fun swipeLeft() {
-       scheduleSwipeAnim(Dir.LEFT)
+        var merge = false
+
+        for (y in 0 until lines) {
+            var x = 0
+            while (x < lines) {
+                for (x1 in x + 1 until lines) {
+                    if (cardArray[x1][y]!!.num > 0) {
+                        if (cardArray[x][y]!!.num == 0) {
+                            LogUtil.log("执行：fromPoint($x1,$y),toPoint($x,$y)")
+                            viewModel?.swipe?.value = SwipePoint(cardArray[x1][y]!!,cardArray[x][y]!!,Point(x1, y), Point(x, y))
+                            cardArray[x][y]!!.num = cardArray[x1][y]!!.num
+                            cardArray[x1][y]!!.num = 0
+                            x--
+                            merge = true
+                        } else if (cardArray[x][y]!!.num == cardArray[x1][y]!!.num) {
+                            viewModel?.swipe?.value = SwipePoint(cardArray[x1][y]!!,cardArray[x][y]!!,Point(x1, y), Point(x, y))
+                            cardArray[x][y]!!.num = cardArray[x1][y]!!.num * 2
+                            cardArray[x1][y]!!.num = 0
+                            viewModel?.addScore(cardArray[x][y]!!.num)
+                            merge = true
+                        }
+                        break
+                    }
+                }
+                x++
+            }
+        }
+        if (merge) {
+            addRandomCard()
+            checkComplete()
+        }
     }
 
     private fun swipeRight() {
-        scheduleSwipeAnim(Dir.RIGHT)
+        var merge = false
+        for (y in 0 until lines) {
+            var x = lines - 1
+            while (x >= 0) {
+                for (x1 in x - 1 downTo 0) {
+                    if (cardArray[x1][y]!!.num > 0) {
+                        if (cardArray[x][y]!!.num == 0) {
+                            viewModel?.swipe?.value = SwipePoint(cardArray[x1][y]!!,cardArray[x][y]!!,Point(x1, y), Point(x, y))
+                            cardArray[x][y]!!.num = cardArray[x1][y]!!.num
+                            cardArray[x1][y]!!.num = 0
+                            x++
+                            merge = true
+                        } else if (cardArray[x][y]!!.num == cardArray[x1][y]!!.num) {
+                            viewModel?.swipe?.value = SwipePoint(cardArray[x1][y]!!,cardArray[x][y]!!,Point(x1, y), Point(x, y))
+                            cardArray[x][y]!!.num = cardArray[x1][y]!!.num * 2
+                            cardArray[x1][y]!!.num = 0
+                            viewModel?.addScore(cardArray[x][y]!!.num)
+                            merge = true
+                        }
+                        break
+                    }
+                }
+                x--
+            }
+        }
+        if (merge) {
+            addRandomCard()
+            checkComplete()
+        }
     }
 
     private fun swipeUp() {
-        scheduleSwipeAnim(Dir.TOP)
+        var merge = false
+
+        for (x in 0 until lines) {
+            var y = 0
+            while (y < lines) {
+                for (y1 in y + 1 until lines) {
+                    if (cardArray[x][y1]!!.num > 0) {
+                        if (cardArray[x][y]!!.num == 0) {
+                            viewModel?.swipe?.value = SwipePoint(cardArray[x][y1]!!,cardArray[x][y]!!,Point(x, y1), Point(x, y))
+                            cardArray[x][y]!!.num = cardArray[x][y1]!!.num
+                            cardArray[x][y1]!!.num = 0
+                            y--
+                            merge = true
+                        } else if (cardArray[x][y]!!.num == cardArray[x][y1]!!.num) {
+                            viewModel?.swipe?.value = SwipePoint(cardArray[x][y1]!!,cardArray[x][y]!!,Point(x, y1), Point(x, y))
+                            cardArray[x][y]!!.num =  cardArray[x][y1]!!.num * 2
+                            cardArray[x][y1]!!.num = 0
+                            viewModel?.addScore(cardArray[x][y]!!.num)
+                            merge = true
+                        }
+                        break
+                    }
+                }
+                y++
+            }
+        }
+        if (merge) {
+            addRandomCard()
+            checkComplete()
+        }
     }
 
     private fun swipeDown() {
-        scheduleSwipeAnim(Dir.BOTTOM)
+        var merge = false
+
+        for (x in 0 until lines) {
+            var y = lines - 1
+            while (y >= 0) {
+                for (y1 in y - 1 downTo 0) {
+                    if (cardArray[x][y1]!!.num > 0) {
+                        if (cardArray[x][y]!!.num == 0) {
+                            viewModel?.swipe?.value = SwipePoint(cardArray[x][y1]!!,cardArray[x][y]!!,Point(x, y1), Point(x, y))
+                            cardArray[x][y]!!.num = cardArray[x][y1]!!.num
+                            cardArray[x][y1]!!.num = 0
+                            y++
+                            merge = true
+                        } else if (cardArray[x][y]!!.num == cardArray[x][y1]!!.num) {
+                            viewModel?.swipe?.value = SwipePoint(cardArray[x][y1]!!,cardArray[x][y]!!,Point(x, y1), Point(x, y))
+                            cardArray[x][y]!!.num =cardArray[x][y1]!!.num * 2
+                            cardArray[x][y1]!!.num = 0
+                            viewModel?.addScore(cardArray[x][y]!!.num)
+                            merge = true
+                        }
+                        break
+                    }
+                }
+                y--
+            }
+        }
+        if (merge) {
+            addRandomCard()
+            checkComplete()
+        }
     }
 
-    /**
-     * index 要排除的不移动的行 列
-     */
-    private fun scheduleSwipeAnim(index:Dir){
-        val hashMap = HashMap<Card,Int>()
-        for(x in 0..3){
-            for (y in 0..3){
-                if(index == Dir.LEFT && y != 0){
-                    worthyArray[x][y]?.let {
-                        hashMap.put(it,y)
-                    }
-                }else if(index == Dir.TOP && x != 0 ){
-                    worthyArray[x][y]?.let {
-                        list.add(it)
-                    }
-                }else if(index == Dir.RIGHT && y != 3){
-                    worthyArray[x][y]?.let {
-                        list.add(it)
-                    }
-                }else if(index == Dir.BOTTOM && x != 3){
-                    worthyArray[x][y]?.let {
-                        list.add(it)
-                    }
+
+    private fun checkComplete() {
+        var complete = true
+        ALL@ for (y in 0 until lines) {
+            for (x in 0 until lines) {
+                if (cardArray[x][y]!!.num == 0 ||
+                    x > 0 && cardArray[x][y]!!.equal(cardArray[x - 1][y]!!) ||
+                    x < lines - 1 && cardArray[x][y]!!.equal(cardArray[x + 1][y]!!) ||
+                    y > 0 && cardArray[x][y]!!.equal(cardArray[x][y - 1]!!) ||
+                    y < lines - 1 && cardArray[x][y]!!.equal(cardArray[x][y + 1]!!)
+                ) {
+                    complete = false
+                    break@ALL
                 }
             }
         }
-        startAnim(list,index)
-    }
-
-    private fun startAnim(list:MutableList<Card>,dir:Dir){
-
-    }
-
-    private fun randomCard() {
-        val num = if ((0..2).random() > 0) 2 else 4
-        var indexX = (0..3).random()
-        var indexY = (0..3).random()
-        while (cardArray[indexX][indexY]?.num != 0) {
-            indexX = (0..3).random()
-            indexY = (0..3).random()
+        if (complete) {
+            AlertDialog.Builder(context).setTitle("你好").setMessage("游戏结束").setPositiveButton(
+                "重新开始"
+            ) { _, _ -> restartGame() }.show()
         }
-        showViewAnim(cardArray[indexX][indexY]!!,num)
-        worthyArray[indexX][indexY] = cardArray[indexX][indexY]
     }
 
-    //卡片出现的动画
-   private fun showViewAnim(card: Card,num:Int) {
-        val set = AnimatorSet()
-        set.playTogether(
-            AnimUtil.getScaleX(card, 0f, 1f),
-            AnimUtil.getScaleY(card, 0f, 1f)
-        )
-        set.duration = 300
-        set.addListener(object :Animator.AnimatorListener{
-            override fun onAnimationStart(animation: Animator?) {
-                card.num = num
-            }
-
-            override fun onAnimationEnd(animation: Animator?) {
-
-            }
-
-            override fun onAnimationCancel(animation: Animator?) {
-
-            }
-
-            override fun onAnimationRepeat(animation: Animator?) {
-
-            }
-        })
-        set.start()
+    /**
+     * 布局新的边
+     */
+    fun newLayout(column:Int){
+        removeAllViews()
+        lines = column
+        cardArray = Array(lines) { arrayOfNulls(lines) }
+        columnCount = column
+        addCards((ScreenUtil.getScreenWidth() - 2 * space) / lines)
+        restartGame()
     }
+
+    fun restartGame() {
+        for (y in 0 until lines) {
+            for (x in 0 until lines) {
+                cardArray[x][y]!!.num = 0
+            }
+        }
+        addRandomCard()
+        addRandomCard()
+        viewModel?.scoreValue = 0
+        viewModel?.bestScoreValue = Hawk.get(BEST_SCORE, 0)
+        viewModel?.addScore(0)
+    }
+
+    private fun addRandomCard() {
+        emptyPoints.clear()
+        for (y in 0 until lines) {
+            for (x in 0 until lines) {
+                if (cardArray[x][y]!!.num <= 0) {
+                    emptyPoints.add(Point(x, y))
+                }
+            }
+        }
+
+        if (emptyPoints.size > 0) {
+            val p: Point = emptyPoints.removeAt((Math.random() * emptyPoints.size).toInt())
+            cardArray[p.x][p.y]!!.num = if (Math.random() > 0.1) 2 else 4
+//            cardArray[p.x][p.y]!!.num = 4
+            GameAnimUtil.showScaleAnim(cardArray[p.x][p.y]!!)
+        }
+    }
+
 }

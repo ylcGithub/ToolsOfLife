@@ -17,6 +17,11 @@ fun setAppTitleBackClick(titleBar: AppTitle, listener: View.OnClickListener?) {
     titleBar.setClickBackListener(listener)
 }
 
+@BindingAdapter("titleRightOneTextClick")
+fun setAppTitleRightOneTextClick(titleBar: AppTitle, listener: View.OnClickListener?) {
+    titleBar.setRightOneTextBtnClickListener(listener)
+}
+
 @BindingAdapter("addTextChangeListener")
 fun addTextChangeListener(et: EditText, watcher: TextWatcher?) {
     watcher?.let {

@@ -28,8 +28,8 @@
             android:id="@+id/hor_game"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hor_content="前往"
-            app:hor_right_icon="@drawable/icon_arrow_down"
+            app:hor_content="开始游戏"
+            app:hor_right_icon="@drawable/icon_arrow_right"
             app:hor_title="小游戏2048" />
     </LinearLayout>
 </layout>
